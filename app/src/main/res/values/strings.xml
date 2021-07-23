@@ -1,0 +1,34 @@
+<resources>
+
+    <string name="app_name">Quiz</string>
+    <string name="back_btn">Назад</string>
+    <string name="leaderboard_text">Доска почета</string>
+    <string name="null_text">null</string>
+
+    <!-- маин -->
+
+    <string name="main_text">Викторина</string>
+    <string name="play_btn">Играть</string>
+
+    <!-- question -->
+
+    <string name="question_timer">15</string>
+    <string name="question_label">Вопрос {0}</string>
+    <string name="question_alt">Question image</string>
+    <string name="question_help">50/50 ({0})</string>
+
+    <string name="question_right">Верно</string>
+    <string name="question_wrong">Неверно</string>
+
+    <!-- finish -->
+
+    <string name="finish_label">Финалочка</string>
+    <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
+    <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} очков.</string>
+
+    <!-- диалоговые окна -->
+
+    <string name="name_dialog_title">Имя игрока</string>
+    <string name="name_dialog_placeholder">Ваше имя</string>
+
+</resources>
