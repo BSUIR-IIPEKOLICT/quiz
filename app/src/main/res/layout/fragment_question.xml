@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/mainBgColor"
+    tools:context=".view.QuestionFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/question_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textSize="32sp"
+            android:textColor="?attr/colorAccent"
+            android:textStyle="bold"
+            tools:text="@string/question_timer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/question_iv"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_margin="50dp"
+            android:contentDescription="@string/question_alt"
+            app:layout_constraintBottom_toTopOf="@+id/question_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question_timer"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/question_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/null_text"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/question_rg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/question_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/question_help"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/question_rb0"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/null_text" />
+
+            <RadioButton
+                android:id="@+id/question_rb1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/null_text" />
+
+            <RadioButton
+                android:id="@+id/question_rb2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/null_text" />
+
+            <RadioButton
+                android:id="@+id/question_rb3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/null_text" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/question_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="25dp"
+            android:text="@string/question_help"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
