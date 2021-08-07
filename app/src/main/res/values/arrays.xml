@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- цвет акцента (названия+значения) -->
+
+    <string-array name="accentColor_entries">
+        <item>Стоковый</item>
+        <item>Коричневый</item>
+        <item>Оранжевый</item>
+        <item>Светло-зеленый</item>
+        <item>Фиолетовый</item>
+        <item>Голубой</item>
+        <item>Розовый</item>
+        <item>AOSP</item>
+        <item>Красный</item>
+        <item>Темно-синий</item>
+        <item>Темно-зеленый</item>
+        <item>Желтый</item>
+    </string-array>
+    <string-array name="accentColor_values">
+        <item>Stock</item>
+        <item>Brown</item>
+        <item>Orange</item>
+        <item>LGreen</item>
+        <item>Violet</item>
+        <item>Cyan</item>
+        <item>Pink</item>
+        <item>Aosp</item>
+        <item>Red</item>
+        <item>DBlue</item>
+        <item>DGreen</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <!--  -->
+
+    <!-- questions -->
+
+    <string-array name="q1_strings">
+        <item>Кто изображен на картинке?</item>
+        <item>Гитлер</item>
+        <item>Парень кафтанчиковой</item>
+        <item>Пидорас</item>
+        <item>Крутой мужык
+        </item>
+    </string-array>
+
+    <!--    -->
+
+</resources>

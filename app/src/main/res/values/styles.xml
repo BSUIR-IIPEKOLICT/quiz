@@ -1,0 +1,74 @@
+<resources>
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:textColor">?attr/mainTextColor</item>
+    </style>
+
+    <style name="SectionStyle">
+        <item name="android:layout_margin">20dp</item>
+    </style>
+
+    <style name="RadioGroupStyle">
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="SectionHeaderStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="RadioButtonDefaultPar" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/mainTextColor</item>
+    </style>
+
+    <style name="ListDivider">
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="SwitchStyle" parent="Widget.MaterialComponents.Slider">
+        <item name="android:switchPadding">10dp</item>
+        <item name="android:track">@drawable/switch_track</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="background">?attr/mainBgColor</item>
+    </style>
+
+    <!-- оверлей для настроек -->
+
+    <style name="PreferenceTheme" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="switchPreferenceStyle">@style/SwitchPreference</item>
+        <item name="dialogPreferenceStyle">@style/DialogPreferenceStyle</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/PreferenceCategoryTitleTextAppearance</item>
+    </style>
+
+    <style name="SwitchPreference" parent="Preference.SwitchPreference.Material">
+        <item name="android:widgetLayout">@layout/switch_pref</item>
+    </style>
+
+    <style name="DialogPreferenceStyle" parent="Preference.DialogPreference.Material">
+        <item name="android:positiveButtonText">@string/ok</item>
+        <item name="android:negativeButtonText">@string/cancel</item>
+    </style>
+
+    <style name="PreferenceCategoryTitleTextAppearance" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/red</item>
+    </style>
+</resources>

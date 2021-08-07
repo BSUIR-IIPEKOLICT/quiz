@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/themePreferences_text">
+
+        <ListPreference
+            android:id="@+id/accentColor"
+            app:defaultValue="Stock"
+            app:entries="@array/accentColor_entries"
+            app:entryValues="@array/accentColor_values"
+            app:key="AccentColor"
+            app:title="@string/accentColor_header_text"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreference
+            android:id="@+id/darkMode"
+            app:key="DarkMode"
+            app:enabled="true"
+            app:defaultValue="true"
+            app:title="@string/darkMode_text" />
+
+    </PreferenceCategory>
+
+    <!--
+
+    <PreferenceCategory app:title="@string/uiPreferences_text">
+
+        <SwitchPreference
+            android:id="@+id/oneuiMode"
+            app:key="OneuiMode"
+            app:defaultValue="false"
+            app:summary="@string/oneuiMode_secondaryText"
+            app:title="@string/oneuiMode_primaryText" />
+
+    </PreferenceCategory>
+
+    -->
+</PreferenceScreen>

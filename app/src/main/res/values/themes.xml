@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Кастомные аттрибуты -->
+
+    <attr name="mainBgColor" format="reference"/>
+    <attr name="secondaryBgColor" format="reference"/>
+    <attr name="additionalBgColor" format="reference"/>
+    <attr name="hoverBgColor" format="reference"/>
+    <attr name="mainTextColor" format="reference"/>
+    <attr name="secondaryTextColor" format="reference"/>
+    <attr name="switchThumbColor" format="reference"/>
+    <attr name="switchDisabledThumbColor" format="reference"/>
+
+    <attr name="secondaryAlpha" format="reference"/>
+    <attr name="disabledAlpha" format="reference"/>
+
+    <attr name="aboutLogo" format="reference"/>
+
+    <!-- Материнская темная тема -->
+
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
+        <item name="dialogCornerRadius">20dp</item>
+        <!--<item name="android:alertDialogTheme">@style/DialogStyle</item>-->
+
+        <item name="secondaryAlpha">@dimen/secondary_alpha</item>
+        <item name="disabledAlpha">@dimen/disabled_alpha</item>
+
+        <item name="aboutLogo">@drawable/about_logo_dark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Черная тема -->
+
+    <style name="Theme_Black" parent="AppTheme">
+        <item name="mainBgColor">@color/black</item>
+        <item name="secondaryBgColor">@color/lightBlack</item>
+        <item name="additionalBgColor">@color/lighterBlack</item>
+        <item name="hoverBgColor">@color/darkerGrey</item>
+        <item name="mainTextColor">@color/lightBeige</item>
+        <item name="secondaryTextColor">@color/ashen</item>
+        <item name="switchThumbColor">@color/lightBeige</item>
+        <item name="switchDisabledThumbColor">@color/darkBeige</item>
+        <!--<item name="alertDialogStyle">@style/DialogStyle</item>-->
+    </style>
+
+    <style name="Theme_BlackStock" parent="Theme_Black">
+        <item name="colorAccent">@color/oxygenBlue</item>
+    </style>
+
+    <style name="Theme_BlackBrown" parent="Theme_Black">
+        <item name="colorAccent">@color/brown</item>
+    </style>
+
+    <style name="Theme_BlackOrange" parent="Theme_Black">
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    <style name="Theme_BlackLGreen" parent="Theme_Black">
+        <item name="colorAccent">@color/lightGreen</item>
+    </style>
+
+    <style name="Theme_BlackViolet" parent="Theme_Black">
+        <item name="colorAccent">@color/violet</item>
+    </style>
+
+    <style name="Theme_BlackCyan" parent="Theme_Black">
+        <item name="colorAccent">@color/cyan</item>
+    </style>
+
+    <style name="Theme_BlackPink" parent="Theme_Black">
+        <item name="colorAccent">@color/pink</item>
+    </style>
+
+    <style name="Theme_BlackAosp" parent="Theme_Black">
+        <item name="colorAccent">@color/aosp</item>
+    </style>
+
+    <style name="Theme_BlackRed" parent="Theme_Black">
+        <item name="colorAccent">@color/red</item>
+    </style>
+
+    <style name="Theme_BlackDBlue" parent="Theme_Black">
+        <item name="colorAccent">@color/darkBlue</item>
+    </style>
+
+    <style name="Theme_BlackDGreen" parent="Theme_Black">
+        <item name="colorAccent">@color/darkGreen</item>
+    </style>
+
+    <style name="Theme_BlackYellow" parent="Theme_Black">
+        <item name="colorAccent">@color/yellow</item>
+    </style>
+
+    <!-- Материнская светлая тема -->
+
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light">
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
+        <item name="dialogCornerRadius">20dp</item>
+
+        <item name="secondaryAlpha">@dimen/secondary_alpha</item>
+        <item name="disabledAlpha">@dimen/disabled_alpha</item>
+
+        <item name="aboutLogo">@drawable/about_logo_light</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Светлая тема -->
+
+    <style name="Theme_Light" parent="AppThemeLight">
+        <item name="mainBgColor">@color/darkerWhite</item>
+        <item name="secondaryBgColor">@color/darkWhite</item>
+        <item name="additionalBgColor">@color/white</item>
+        <item name="hoverBgColor">@color/lighterBeige</item>
+        <item name="mainTextColor">@color/lightBlack</item>
+        <item name="secondaryTextColor">@color/lighterGrey</item>
+        <item name="switchThumbColor">@color/beige</item>
+        <item name="switchDisabledThumbColor">@color/lightBeige</item>
+    </style>
+
+    <style name="Theme_LightStock" parent="Theme_Light">
+        <item name="colorAccent">@color/oxygenBlue</item>
+    </style>
+
+    <style name="Theme_LightBrown" parent="Theme_Light">
+        <item name="colorAccent">@color/brown</item>
+    </style>
+
+    <style name="Theme_LightOrange" parent="Theme_Light">
+        <item name="colorAccent">@color/orange</item>
+    </style>
+
+    <style name="Theme_LightLGreen" parent="Theme_Light">
+        <item name="colorAccent">@color/lightGreen</item>
+    </style>
+
+    <style name="Theme_LightViolet" parent="Theme_Light">
+        <item name="colorAccent">@color/violet</item>
+    </style>
+
+    <style name="Theme_LightCyan" parent="Theme_Light">
+        <item name="colorAccent">@color/cyan</item>
+    </style>
+
+    <style name="Theme_LightPink" parent="Theme_Light">
+        <item name="colorAccent">@color/pink</item>
+    </style>
+
+    <style name="Theme_LightAosp" parent="Theme_Light">
+        <item name="colorAccent">@color/aosp</item>
+    </style>
+
+    <style name="Theme_LightRed" parent="Theme_Light">
+        <item name="colorAccent">@color/red</item>
+    </style>
+
+    <style name="Theme_LightDBlue" parent="Theme_Light">
+        <item name="colorAccent">@color/darkBlue</item>
+    </style>
+
+    <style name="Theme_LightDGreen" parent="Theme_Light">
+        <item name="colorAccent">@color/darkGreen</item>
+    </style>
+
+    <style name="Theme_LightYellow" parent="Theme_Light">
+        <item name="colorAccent">@color/yellow</item>
+    </style>
+
+    <!-- -->
+
+    <style name="Theme_oneui" parent="Theme_LightStock">
+        <item name="actionBarSize">300dp</item>
+        <!--<item name="actionBarStyle"></item>-->
+    </style>
+</resources>

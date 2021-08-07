@@ -1,0 +1,65 @@
+<resources>
+
+    <string name="app_name">Quiz</string>
+    <string name="back_btn">Назад</string>
+    <string name="leaderboard_text">Доска почета</string>
+    <string name="null_text">null</string>
+
+    <!-- leaderboard -->
+
+    <!-- маин -->
+
+    <string name="main_text">Квиз епта</string>
+    <string name="play_btn">Играть</string>
+
+    <string name="dialog_title">Имя игрока</string>
+    <string name="dialog_placeholder">Ваше имя</string>
+
+    <!-- question -->
+
+    <string name="def_question_alt">Question image</string>
+
+    <!-- finish -->
+
+    <string name="finish_start_1">Поздравляем, игрок </string>
+    <string name="finish_end_1">!</string>
+    <string name="finish_start_2">Вы заработали </string>
+    <string name="finish_end_2"> суток ареста.</string>
+
+    <!-- меню -->
+
+    <string name="action_settings">Настройки</string>
+    <string name="action_about">Информация</string>
+
+    <!-- названия активити -->
+
+    <string name="settings_activity_title">Настройки</string>
+    <string name="about_activity_title">Информация</string>
+
+    <!-- настройки -->
+
+    <string name="themePreferences_text">Внешний вид</string>
+    <string name="accentColor_header_text">Цвет акцента</string>
+    <string name="darkMode_text">Темная тема</string>
+
+    <string name="uiPreferences_text">Удобство использования</string>
+    <string name="oneuiMode_primaryText">Режим OneUI</string>
+    <string name="oneuiMode_secondaryText">Шапка на пол экрана</string>
+    <string name="oneuiMode_oneuiStyle_primaryText">Шапка по центру</string>
+    <string name="oneuiMode_oneuiStyle_secondaryText">Как на сосунгах</string>
+
+    <!-- диалоговые окна -->
+
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+
+    <!-- информация-активити -->
+
+    <string name="about_logo_desc">Логотип</string>
+    <string name="about_text_os">Loshica OS 5.0</string>
+    <string name="about_text_copyright">
+        Loshica Corporation
+        <sup><small><small>TM</small></small></sup>
+        @all rights reserved
+    </string>
+</resources>
