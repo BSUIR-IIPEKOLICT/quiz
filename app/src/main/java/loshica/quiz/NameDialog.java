@@ -28,8 +28,7 @@ public class NameDialog extends DialogFragment {
 
         return builder
             .setView(root)
-            .setTitle(R.string.dialog_title)
-            .setNegativeButton(R.string.cancel, null)
+            .setTitle(R.string.name_dialog_title)
             .setPositiveButton(R.string.ok, (dialog, which) -> listener.name(et.getText().toString()))
             .create();
     }

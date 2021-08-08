@@ -1,5 +1,6 @@
 package loshica.quiz;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -18,8 +19,7 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
     Button btn;
     FinishFragmentListener listener;
 
-    public FinishFragment() {}
-
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,20 +28,22 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         tv = (TextView) root.findViewById(R.id.finish_text);
         btn = (Button) root.findViewById(R.id.finish_back);
         btn.setOnClickListener(this);
+        tv.setText(
+            getResources().getString(R.string.finish_start_1) + " " + Data.user.name
+            + getResources().getString(R.string.finish_end_1) + "\n" +
+            getResources().getString(R.string.finish_start_2) + " " +
+            Integer.toString(Data.score) + " " +
+            getResources().getString(R.string.finish_end_2)
+        );
 
         return root;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (MainActivity.user != null) { reloadText(); }
-    }
-
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.finish_back) {
-            MainActivity.score = 0;
+            listener.save();
+            listener.finish();
             listener.back();
         }
     }
@@ -56,16 +58,9 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void reloadText() {
-        String text = getResources().getString(R.string.finish_start_1) + " " + MainActivity.user.getName()
-            + getResources().getString(R.string.finish_end_1) + "\n" +
-            getResources().getString(R.string.finish_start_2) + " " + MainActivity.user.getScore()
-            + " " + getResources().getString(R.string.finish_end_2);
-        tv.setText(text);
-    }
-
     public interface FinishFragmentListener {
-        void back();
         void save();
+        void finish();
+        void back();
     }
 }

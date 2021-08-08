@@ -1,5 +1,6 @@
 package loshica.quiz;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +25,12 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull LeaderboardAdapter.ViewHolder holder, int position) {
         User user = users.toArray(new User[0])[position];
-        holder.nameView.setText(user.getName());
-        holder.scoreView.setText(user.getScore());
+        holder.nameView.setText(user.name);
+        holder.scoreView.setText(Integer.toString(user.score));
     }
 
     @Override

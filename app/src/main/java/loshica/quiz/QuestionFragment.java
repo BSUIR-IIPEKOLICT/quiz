@@ -17,25 +17,20 @@ import android.widget.TextView;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_IMG = "img";
     private static final String ARG_TEXT = "text";
     private static final String ARG_BTN0 = "btn0";
     private static final String ARG_BTN1 = "btn1";
     private static final String ARG_BTN2 = "btn2";
     private static final String ARG_BTN3 = "btn3";
-
     private static final String ARG_RIGHT = "right";
 
-    // TODO: Rename and change types of parameters
     private int img;
     private String text;
     private String btn0;
     private String btn1;
     private String btn2;
     private String btn3;
-
     private int right;
 
     ImageView iv;
@@ -50,27 +45,25 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     public Boolean isChecked = false;
     QuestionFragmentListener listener;
 
-    public QuestionFragment() {}
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param q string array of question and answers.
+     * @param q Question object with params.
      * @return A new instance of fragment Question.
      */
-    // TODO: Rename and change types and number of parameters
     public static QuestionFragment newInstance(Question q) {
         QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_IMG, q.img);
-        args.putString(ARG_TEXT, q.text);
-        args.putString(ARG_BTN0, q.btn0);
-        args.putString(ARG_BTN1, q.btn1);
-        args.putString(ARG_BTN2, q.btn2);
-        args.putString(ARG_BTN3, q.btn3);
-
-        args.putInt(ARG_RIGHT, q.right);
+        // TODO: My question obj parser
+        args.putInt(ARG_IMG, q.numbers[0]);
+        args.putString(ARG_TEXT, q.strings[0]);
+        args.putString(ARG_BTN0, q.strings[1]);
+        args.putString(ARG_BTN1, q.strings[2]);
+        args.putString(ARG_BTN2, q.strings[3]);
+        args.putString(ARG_BTN3, q.strings[4]);
+        args.putInt(ARG_RIGHT, q.numbers[1]);
+        //
         fragment.setArguments(args);
         return fragment;
     }
@@ -85,7 +78,6 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             btn1 = getArguments().getString(ARG_BTN1);
             btn2 = getArguments().getString(ARG_BTN2);
             btn3 = getArguments().getString(ARG_BTN3);
-
             right = getArguments().getInt(ARG_RIGHT);
         }
     }
@@ -154,7 +146,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                     rg.getChildAt(i).setAlpha((float) 0.3);
                 }
             }
-            if (!MainActivity.inProgress) { rg.clearCheck(); }
+            if (!Data.inProgress) { rg.clearCheck(); }
             listener.next(isCorrect(right, choose));
         }
     }
@@ -171,8 +163,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
     public interface QuestionFragmentListener {
         void next(boolean isCorrect);
-        void reloadQuestions();
     }
 
-    public boolean isCorrect(int right, int choose) { return right == choose; }
+    private boolean isCorrect(int right, int choose) { return right == choose; }
 }

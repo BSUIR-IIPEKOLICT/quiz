@@ -45,6 +45,11 @@
         </item>
     </string-array>
 
+    <integer-array name="q1_int">
+        <item>0</item>
+        <item>2</item>
+    </integer-array>
+
     <!--    -->
 
 </resources>

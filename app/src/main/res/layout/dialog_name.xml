@@ -19,8 +19,9 @@
             android:id="@+id/name_dialog_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/dialog_placeholder"
-            android:textColor="?attr/mainTextColor" />
+            android:hint="@string/name_dialog_placeholder"
+            android:textColor="?attr/mainTextColor"
+            android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

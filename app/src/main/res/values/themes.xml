@@ -3,19 +3,19 @@
 
     <!-- Кастомные аттрибуты -->
 
-    <attr name="mainBgColor" format="reference"/>
-    <attr name="secondaryBgColor" format="reference"/>
-    <attr name="additionalBgColor" format="reference"/>
-    <attr name="hoverBgColor" format="reference"/>
-    <attr name="mainTextColor" format="reference"/>
-    <attr name="secondaryTextColor" format="reference"/>
-    <attr name="switchThumbColor" format="reference"/>
-    <attr name="switchDisabledThumbColor" format="reference"/>
+    <attr name="mainBgColor" format="reference" />
+    <attr name="secondaryBgColor" format="reference" />
+    <attr name="additionalBgColor" format="reference" />
+    <attr name="hoverBgColor" format="reference" />
+    <attr name="mainTextColor" format="reference" />
+    <attr name="secondaryTextColor" format="reference" />
+    <attr name="switchThumbColor" format="reference" />
+    <attr name="switchDisabledThumbColor" format="reference" />
 
-    <attr name="secondaryAlpha" format="reference"/>
-    <attr name="disabledAlpha" format="reference"/>
+    <attr name="secondaryAlpha" format="reference" />
+    <attr name="disabledAlpha" format="reference" />
 
-    <attr name="aboutLogo" format="reference"/>
+    <attr name="aboutLogo" format="reference" />
 
     <!-- Материнская темная тема -->
 
@@ -179,4 +179,13 @@
         <item name="actionBarSize">300dp</item>
         <!--<item name="actionBarStyle"></item>-->
     </style>
+
+    <style name="Theme_BlackStock.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_BlackStock.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme_BlackStock.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

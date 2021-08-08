@@ -12,9 +12,6 @@
     <string name="main_text">Квиз епта</string>
     <string name="play_btn">Играть</string>
 
-    <string name="dialog_title">Имя игрока</string>
-    <string name="dialog_placeholder">Ваше имя</string>
-
     <!-- question -->
 
     <string name="def_question_alt">Question image</string>
@@ -50,6 +47,9 @@
 
     <!-- диалоговые окна -->
 
+    <string name="name_dialog_title">Имя игрока</string>
+    <string name="name_dialog_placeholder">Ваше имя</string>
+    <string name="finish_dialog_message">Поздравляем! Квиз пройден.</string>
     <string name="ok">ОК</string>
     <string name="cancel">Отмена</string>
 
