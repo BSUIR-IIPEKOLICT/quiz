@@ -9,6 +9,7 @@
             app:entries="@array/accentColor_entries"
             app:entryValues="@array/accentColor_values"
             app:key="AccentColor"
+            app:icon="@drawable/ic_accent_icon"
             app:title="@string/accentColor_header_text"
             app:useSimpleSummaryProvider="true" />
 
@@ -17,6 +18,7 @@
             app:key="DarkMode"
             app:enabled="true"
             app:defaultValue="true"
+            app:icon="@drawable/ic_color_icon"
             app:title="@string/darkMode_text" />
 
     </PreferenceCategory>
@@ -35,4 +37,8 @@
     </PreferenceCategory>
 
     -->
+
+    <PreferenceCategory app:title="@string/otherPreferences_text">
+
+    </PreferenceCategory>
 </PreferenceScreen>

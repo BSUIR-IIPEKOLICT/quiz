@@ -6,14 +6,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.HashSet;
-import java.util.Objects;
 
 public class QuestionActivity extends AppCompatActivity implements
     QuestionFragment.QuestionFragmentListener,
@@ -22,29 +19,11 @@ public class QuestionActivity extends AppCompatActivity implements
     ViewPager qp;
     QuestionAdapter qa;
     QuestionFragment q;
-//    public static final Question[] questions = new Question[]{
-////        new Question(App.res().getStringArray(R.array.q1_strings), 0, 2)
-//        new Question(
-//            new String[]{
-//                "Кто изображен на картинке?",
-//                "Гитлер",
-//                "Парень кафтанчиковой",
-//                "Пидорас",
-//                "Воин света"
-//            },
-//            0,
-//            2
-//        )
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Theme
-        Context context = getApplicationContext();
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        String currentAC = Objects.requireNonNull(settings.getString("AccentColor", "Stock"));
-        boolean currentDM = settings.getBoolean("DarkMode", true);
-        Theme.set(this, currentDM, currentAC);
+        new Theme(this).set();
         //
 
         Data.users = getSharedPreferences(Data.USERS, Context.MODE_PRIVATE);
@@ -124,10 +103,8 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent target = (item.getItemId() == R.id.action_settings) ?
-            new Intent(this, SettingsActivity.class) :
-            new Intent(this, AboutActivity.class);
-        startActivity(target);
+        startActivity((item.getItemId() == R.id.action_settings) ?
+            new Intent(this, SettingsActivity.class) : null);
         return super.onOptionsItemSelected(item);
     }
 

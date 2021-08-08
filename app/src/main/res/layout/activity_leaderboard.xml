@@ -7,32 +7,21 @@
     android:background="?attr/mainBgColor"
     tools:context=".LeaderboardActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:text="@string/leaderboard_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginVertical="150dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/leaderboard_back"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginBottom="125dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/leaderboard_back" />
 
     <Button
         android:id="@+id/leaderboard_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="50dp"
         android:text="@string/back_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

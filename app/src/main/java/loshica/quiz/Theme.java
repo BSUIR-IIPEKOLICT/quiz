@@ -1,12 +1,34 @@
 package loshica.quiz;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class Theme {
 
-    public static void set(Activity activity, boolean darkMode, String accentColor) {
-        if (darkMode)
-            switch (accentColor) {
+    private final String ACCENT_KEY = "AccentColor";
+    private final String DARK_KEY = "DarkMode";
+    private final String ACCENT_DEFAULT = "Stock";
+    private final boolean DARK_DEFAULT = true;
+
+    private Context context;
+    private SharedPreferences settings;
+    private String accent;
+    private boolean dark;
+    private Activity activity;
+
+    Theme(Activity activity) {
+        this.context = App.context().getApplicationContext();
+        this.settings = PreferenceManager.getDefaultSharedPreferences(context);
+        this.accent = settings.getString(ACCENT_KEY, ACCENT_DEFAULT);
+        this.dark = settings.getBoolean(DARK_KEY, DARK_DEFAULT);
+        this.activity = activity;
+    }
+
+    public void set() {
+        if (dark)
+            switch (accent) {
                 case "Brown":
                     activity.setTheme(R.style.Theme_BlackBrown);
                     break;
@@ -37,15 +59,15 @@ public class Theme {
                 case "DGreen":
                     activity.setTheme(R.style.Theme_BlackDGreen);
                     break;
-                case "Yellow":
-                    activity.setTheme(R.style.Theme_BlackYellow);
+                case "BlackWhite":
+                    activity.setTheme(R.style.Theme_BlackWhite);
                     break;
                 default:
                     activity.setTheme(R.style.Theme_BlackStock);
                     break;
             }
         else
-            switch (accentColor) {
+            switch (accent) {
                 case "Brown":
                     activity.setTheme(R.style.Theme_LightBrown);
                     break;
@@ -76,14 +98,20 @@ public class Theme {
                 case "DGreen":
                     activity.setTheme(R.style.Theme_LightDGreen);
                     break;
-                case "Yellow":
-                    activity.setTheme(R.style.Theme_LightYellow);
+                case "BlackWhite":
+                    activity.setTheme(R.style.Theme_LightBlack);
                     break;
                 default:
                     activity.setTheme(R.style.Theme_LightStock);
                     break;
             }
     }
+
+    public SharedPreferences getSettings() {
+        return this.settings;
+    }
+
+
 /*
     public static void oneuiMode(Activity activity, boolean mode) {
         if (mode) activity.setTheme(R.style.Theme_oneui);

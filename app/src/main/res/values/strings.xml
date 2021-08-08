@@ -7,6 +7,8 @@
 
     <!-- leaderboard -->
 
+    <string name="leaderboard_label">Доска почета</string>
+
     <!-- маин -->
 
     <string name="main_text">Квиз епта</string>
@@ -14,6 +16,7 @@
 
     <!-- question -->
 
+    <string name="question_label">Вопросы</string>
     <string name="def_question_alt">Question image</string>
 
     <!-- finish -->
@@ -28,12 +31,9 @@
     <string name="action_settings">Настройки</string>
     <string name="action_about">Информация</string>
 
-    <!-- названия активити -->
-
-    <string name="settings_activity_title">Настройки</string>
-    <string name="about_activity_title">Информация</string>
-
     <!-- настройки -->
+
+    <string name="settings_label">Настройки</string>
 
     <string name="themePreferences_text">Внешний вид</string>
     <string name="accentColor_header_text">Цвет акцента</string>
@@ -45,6 +45,8 @@
     <string name="oneuiMode_oneuiStyle_primaryText">Шапка по центру</string>
     <string name="oneuiMode_oneuiStyle_secondaryText">Как на сосунгах</string>
 
+    <string name="otherPreferences_text">Другое</string>
+
     <!-- диалоговые окна -->
 
     <string name="name_dialog_title">Имя игрока</string>
@@ -54,6 +56,8 @@
     <string name="cancel">Отмена</string>
 
     <!-- информация-активити -->
+
+    <string name="about_label">Информация</string>
 
     <string name="about_logo_desc">Логотип</string>
     <string name="about_text_os">Loshica OS 5.0</string>

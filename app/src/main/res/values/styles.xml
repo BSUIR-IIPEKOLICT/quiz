@@ -8,6 +8,16 @@
         <item name="android:textColor">?attr/mainTextColor</item>
     </style>
 
+    <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_bg</item>
+        <item name="android:textColor">?attr/mainTextColor</item>
+        <item name="android:textAppearanceButton">@id/center</item>
+    </style>
+
     <style name="SectionStyle">
         <item name="android:layout_margin">20dp</item>
     </style>

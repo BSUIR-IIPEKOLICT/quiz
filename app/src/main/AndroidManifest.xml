@@ -12,7 +12,7 @@
         android:theme="@style/Theme_BlackStock"
         android:name=".App">
         <activity android:name=".LeaderboardActivity"
-            android:label="@string/app_name"
+            android:label="@string/leaderboard_label"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -20,15 +20,7 @@
         </activity>
         <activity
             android:name=".QuestionActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="loshica.quiz.MainActivity" />
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/about_activity_title"
+            android:label="@string/question_label"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,7 +28,7 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settings_activity_title"
+            android:label="@string/settings_label"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

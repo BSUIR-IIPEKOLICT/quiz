@@ -1,25 +1,24 @@
 package loshica.quiz;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
-import java.util.Objects;
-
-public class SettingsActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsActivity extends AppCompatActivity implements
+    View.OnClickListener,
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Context context = getApplicationContext();
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        String currentAC = Objects.requireNonNull(settings.getString("AccentColor", "Stock"));
-        boolean currentDM = settings.getBoolean("DarkMode", true);
-        Theme.set(this, currentDM, currentAC);
+        // Theme
+        Theme theme = new Theme(this);
+        theme.set();
+        SharedPreferences settings = theme.getSettings();
+        //
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -30,6 +29,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         settings.registerOnSharedPreferenceChangeListener(this);
     }
+
+    @Override
+    public void onClick(View v) {}
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
