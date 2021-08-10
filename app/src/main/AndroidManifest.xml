@@ -11,7 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme_BlackStock"
         android:name=".App">
-        <activity android:name=".LeaderboardActivity"
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LeaderboardActivity"
             android:label="@string/leaderboard_label"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -33,13 +42,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="loshica.quiz.MainActivity" />
-        </activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

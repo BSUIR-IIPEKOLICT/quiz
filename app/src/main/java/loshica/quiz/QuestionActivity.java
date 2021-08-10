@@ -1,24 +1,23 @@
 package loshica.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import java.util.HashSet;
+import java.util.Objects;
 
 public class QuestionActivity extends AppCompatActivity implements
     QuestionFragment.QuestionFragmentListener,
     FinishFragment.FinishFragmentListener {
 
-    ViewPager qp;
+    ViewPager2 qp;
     QuestionAdapter qa;
-    QuestionFragment q;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,73 +25,50 @@ public class QuestionActivity extends AppCompatActivity implements
         new Theme(this).set();
         //
 
-        Data.users = getSharedPreferences(Data.USERS, Context.MODE_PRIVATE);
-        Data.usersJson = Data.users.getStringSet(Data.USERS, new HashSet<String>());
-        for (String itemJson : Data.usersJson) {
-            User itemJava = Data.json.fromJson(itemJson, User.class);
-            Data.usersJava.add(itemJava);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // QuestionPager
-        qp = (ViewPager) findViewById(R.id.questionPager);
-        qa = new QuestionAdapter(getSupportFragmentManager());
+        qp = findViewById(R.id.question_pager);
+        qa = new QuestionAdapter(this);
         qp.setAdapter(qa);
         qp.setCurrentItem(0);
-        qp.setPageTransformer(false, (page, position) -> {
-            final float opacity = Math.abs(Math.abs(position) - 1);
-            page.setAlpha(opacity);
+        qp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                if (App.inProgress && position == qa.getItemCount() - 1) {
+                    save();
+                    App.inProgress = false;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
         });
+        qp.setPageTransformer(new QuestionTransformer());
         //
     }
 
     @Override
-    public void save() {
-        Data.user.score = Data.score;
-        if (!Data.usersJava.contains(Data.user)) {
-            Data.usersJava.add(Data.user);
-            Data.usersJson.add(Data.json.toJson(Data.user, User.class));
-            SharedPreferences.Editor editor = Data.users.edit();
-            editor.remove(Data.USERS);
-            editor.apply();
-            editor.putStringSet(Data.USERS, Data.usersJson);
-            editor.apply();
-            Data.inProgress = false;
-        }
-    }
-
-    @Override
     public void finish() {
-        Data.score = 0;
-        Data.user.name = "";
-        Data.user.score = 0;
-        Data.updateLeaderboard = true;
-        reloadQuestions();
-    }
-
-    @Override
-    public void back() {
+        App.score = 0;
         startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
     public void next(boolean isCorrect) {
-        if (Data.inProgress && isCorrect) { Data.score += 5; }
-        if (qp.getCurrentItem() == qa.getCount() - 2) {
-            for (int i = 0; i < qa.getCount() - 1; i++) {
-                q = (QuestionFragment) getSupportFragmentManager()
-                    .findFragmentByTag("android:switcher:" + R.id.questionPager + ":" + i);
-                assert q != null;
-                q.rg.clearCheck();
-            }
-            Data.inProgress = false;
-        }
+        if (App.inProgress && isCorrect) { App.score += 5; }
         qp.setCurrentItem(qp.getCurrentItem() + 1, true);
-        if (qp.getCurrentItem() == qa.getCount() - 1) {
-            recreate();
-        }
     }
 
     @Override
@@ -103,26 +79,28 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity((item.getItemId() == R.id.action_settings) ?
-            new Intent(this, SettingsActivity.class) : null);
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    public void reloadQuestions() {
-        for (int i = 0; i < qa.getCount() - 1; i++) {
-            q = (QuestionFragment) getSupportFragmentManager()
-                .findFragmentByTag("android:switcher:" + R.id.questionPager + ":" + i);
-            assert q != null;
-            q.isChecked = false;
-            q.rg.clearCheck();
-            for (int j = 0; j < q.rg.getChildCount(); j++) {
-                q.rg.getChildAt(j).setClickable(true);
-                q.rg.getChildAt(j).setAlpha(1);
-            }
-        }
+    public void onBackPressed() {
+        if ((qp.getCurrentItem() > 0)) { qp.setCurrentItem(qp.getCurrentItem() - 1, true); }
+        else { startActivity(new Intent(this, MainActivity.class)); }
     }
 
-    public void onBackPressed() {
-        startActivity(new Intent(this, MainActivity.class));
+    private void save() {
+        User user = new User(App.name, App.score);
+        if (!App.usersJava.contains(user)) {
+            App.usersJava.add(user);
+            App.usersJson.add(App.json.toJson(user, User.class));
+            SharedPreferences.Editor editor = App.users.edit();
+            editor.remove(App.USERS);
+            editor.apply();
+            editor.putStringSet(App.USERS, App.usersJson);
+            editor.apply();
+            App.updateLeaderboard = true;
+        }
     }
 }

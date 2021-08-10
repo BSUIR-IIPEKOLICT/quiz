@@ -38,18 +38,27 @@
 
     <string-array name="q1_strings">
         <item>Кто изображен на картинке?</item>
+
         <item>Гитлер</item>
         <item>Парень кафтанчиковой</item>
         <item>Пидорас</item>
-        <item>Крутой мужык
-        </item>
+        <item>Крутой мужык</item>
     </string-array>
 
-    <integer-array name="q1_int">
-        <item>0</item>
+    <integer-array name="q1_numbers">
         <item>2</item>
     </integer-array>
 
     <!--    -->
+
+    <!-- finish -->
+
+    <string-array name="finish_text">
+        <item>Поздравляем, игрок</item>
+        <item>!\nВы заработали</item>
+        <item>суток ареста.</item>
+    </string-array>
+
+    <!-- -->
 
 </resources>

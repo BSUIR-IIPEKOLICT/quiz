@@ -27,6 +27,7 @@
         <item name="preferenceTheme">@style/PreferenceTheme</item>
         <item name="dialogCornerRadius">20dp</item>
         <!--<item name="android:alertDialogTheme">@style/DialogStyle</item>-->
+        <item name="android:windowContentOverlay">@drawable/actionbar_shadow_dark</item>
 
         <item name="secondaryAlpha">@dimen/secondary_alpha</item>
         <item name="disabledAlpha">@dimen/disabled_alpha</item>

@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        play = (Button) findViewById(R.id.main_play);
-        leaderboard = (Button) findViewById(R.id.main_leaderboard);
+        play = findViewById(R.id.main_play);
+        leaderboard = findViewById(R.id.main_leaderboard);
 
         play.setOnClickListener(this);
         leaderboard.setOnClickListener(this);
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void name(String username) {
-        Data.user.name = username;
-        Data.user.score = 0;
-        Data.inProgress = true;
+        App.name = username;
+        App.score = 0;
+        App.inProgress = true;
         startActivity(new Intent(this, QuestionActivity.class));
     }
 }

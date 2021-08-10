@@ -41,8 +41,8 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
         ViewHolder(View view) {
             super(view);
-            nameView = (TextView) view.findViewById(R.id.user_name);
-            scoreView = (TextView) view.findViewById(R.id.user_score);
+            nameView = view.findViewById(R.id.user_name);
+            scoreView = view.findViewById(R.id.user_score);
         }
     }
 }

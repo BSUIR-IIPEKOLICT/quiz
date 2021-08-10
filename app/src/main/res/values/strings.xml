@@ -21,10 +21,7 @@
 
     <!-- finish -->
 
-    <string name="finish_start_1">Поздравляем, игрок </string>
-    <string name="finish_end_1">!</string>
-    <string name="finish_start_2">Вы заработали </string>
-    <string name="finish_end_2"> суток ареста.</string>
+    <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
 
     <!-- меню -->
 
@@ -61,9 +58,5 @@
 
     <string name="about_logo_desc">Логотип</string>
     <string name="about_text_os">Loshica OS 5.0</string>
-    <string name="about_text_copyright">
-        Loshica Corporation
-        <sup><small><small>TM</small></small></sup>
-        @all rights reserved
-    </string>
+    <string name="about_text_copyright">Loshica Corporation\u2122\n\u00a9 all rights reserved</string>
 </resources>
