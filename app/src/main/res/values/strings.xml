@@ -22,6 +22,7 @@
     <!-- finish -->
 
     <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
+    <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} суток ареста.</string>
 
     <!-- меню -->
 

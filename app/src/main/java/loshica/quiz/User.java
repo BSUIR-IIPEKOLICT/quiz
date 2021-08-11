@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 public class User {
 
-    public String name = "";
-    public int score = 0;
+    public String name;
+    public int score;
 
     public User(String name, int score) {
         this.name = name;

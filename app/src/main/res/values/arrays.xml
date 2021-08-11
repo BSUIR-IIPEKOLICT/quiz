@@ -51,14 +51,4 @@
 
     <!--    -->
 
-    <!-- finish -->
-
-    <string-array name="finish_text">
-        <item>Поздравляем, игрок</item>
-        <item>!\nВы заработали</item>
-        <item>суток ареста.</item>
-    </string-array>
-
-    <!-- -->
-
 </resources>

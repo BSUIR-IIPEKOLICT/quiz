@@ -45,6 +45,7 @@ public class LeaderboardActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        Toast.makeText(getApplicationContext(), App.usersJava.toString(), Toast.LENGTH_LONG).show();
         if (App.updateLeaderboard) {
             la.notifyDataSetChanged();
             App.updateLeaderboard = false;

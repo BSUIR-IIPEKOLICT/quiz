@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.MessageFormat;
+
 public class FinishFragment extends Fragment implements View.OnClickListener {
 
     String textDefault;
-    String[] textArray;
+
     TextView tv;
     Button btn;
     FinishFragmentListener listener;
@@ -33,17 +35,15 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         btn.setOnClickListener(this);
 
         textDefault = App.res().getString(R.string.finish_default_text);
-        textArray = App.res().getStringArray(R.array.finish_text);
 
         return root;
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onResume() {
         super.onResume();
-        String generic = textArray[0] + " " + App.name + " " + textArray[1] + " " +
-            Integer.toString(App.score) + " " + textArray[2];
+        String generic = MessageFormat.format(App.res().getString(R.string.finish_text), App.name,
+            App.score);
         tv.setText((!App.name.equals("")) ? generic : textDefault);
     }
 

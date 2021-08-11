@@ -88,13 +88,13 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        if (!App.inProgress) { radioOff(); }
+        if (!App.inProcess) { radioOff(); }
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        if (!isChecked && App.inProgress) {
+        if (!isChecked && App.inProcess) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
                     choose = i;

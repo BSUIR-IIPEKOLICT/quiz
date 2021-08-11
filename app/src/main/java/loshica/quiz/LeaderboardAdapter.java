@@ -5,17 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.ViewHolder> {
 
-    private final Set<User> users;
+    private final ArrayList<User> users;
 
-    LeaderboardAdapter(Set<User> users) { this.users = users; }
+    LeaderboardAdapter(Set<User> users) {
+        ArrayList<User> list = new ArrayList<>(users);
+        Collections.sort(list, (o1, o2) -> o2.score - o1.score);
+        this.users = list;
+    }
 
     @NonNull
     @Override

@@ -27,7 +27,7 @@ public class App extends Application {
     public static String name = "";
     public static int score = 0;
     public static int help = 3;
-    public static boolean inProgress = false;
+    public static boolean inProcess = false;
     public static boolean updateLeaderboard = false;
 
     @Override

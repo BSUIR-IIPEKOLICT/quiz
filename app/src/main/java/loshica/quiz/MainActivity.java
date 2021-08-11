@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements
     public void name(String username) {
         App.name = username;
         App.score = 0;
-        App.inProgress = true;
+        App.inProcess = true;
         startActivity(new Intent(this, QuestionActivity.class));
     }
 }

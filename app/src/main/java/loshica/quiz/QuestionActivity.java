@@ -44,9 +44,9 @@ public class QuestionActivity extends AppCompatActivity implements
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                if (App.inProgress && position == qa.getItemCount() - 1) {
-                    save();
-                    App.inProgress = false;
+                if (App.inProcess && position == qa.getItemCount() - 1) {
+                    checkSet();
+                    App.inProcess = false;
                 }
             }
 
@@ -67,7 +67,7 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     public void next(boolean isCorrect) {
-        if (App.inProgress && isCorrect) { App.score += 5; }
+        if (App.inProcess && isCorrect) { App.score += 5; }
         qp.setCurrentItem(qp.getCurrentItem() + 1, true);
     }
 
@@ -90,17 +90,33 @@ public class QuestionActivity extends AppCompatActivity implements
         else { startActivity(new Intent(this, MainActivity.class)); }
     }
 
-    private void save() {
+    public void checkSet() {
         User user = new User(App.name, App.score);
+        boolean exists = false;
+
         if (!App.usersJava.contains(user)) {
-            App.usersJava.add(user);
-            App.usersJson.add(App.json.toJson(user, User.class));
-            SharedPreferences.Editor editor = App.users.edit();
-            editor.remove(App.USERS);
-            editor.apply();
-            editor.putStringSet(App.USERS, App.usersJson);
-            editor.apply();
-            App.updateLeaderboard = true;
+            for (User item : App.usersJava) {
+                if (item.name.equals(user.name)) {
+                    exists = true;
+                    if (item.score < user.score) {
+                        App.usersJava.remove(item);
+                        App.usersJson.remove(App.json.toJson(item, User.class));
+                        save(user);
+                    }
+                }
+            }
+            if (!exists) { save(user); }
         }
+    }
+
+    public void save(User user) {
+        App.usersJava.add(user);
+        App.usersJson.add(App.json.toJson(user, User.class));
+        SharedPreferences.Editor editor = App.users.edit();
+        editor.remove(App.USERS);
+        editor.apply();
+        editor.putStringSet(App.USERS, App.usersJson);
+        editor.apply();
+        App.updateLeaderboard = true;
     }
 }
