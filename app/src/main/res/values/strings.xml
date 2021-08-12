@@ -16,48 +16,23 @@
 
     <!-- question -->
 
+    <string name="question_timer">15</string>
     <string name="question_label">Вопросы</string>
-    <string name="def_question_alt">Question image</string>
+    <string name="question_alt">Question image</string>
+    <string name="question_help">50/50 ({0})</string>
+
+    <string name="question_right">Верно</string>
+    <string name="question_wrong">Неверно</string>
 
     <!-- finish -->
 
     <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
     <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} суток ареста.</string>
 
-    <!-- меню -->
-
-    <string name="action_settings">Настройки</string>
-    <string name="action_about">Информация</string>
-
-    <!-- настройки -->
-
-    <string name="settings_label">Настройки</string>
-
-    <string name="themePreferences_text">Внешний вид</string>
-    <string name="accentColor_header_text">Цвет акцента</string>
-    <string name="darkMode_text">Темная тема</string>
-
-    <string name="uiPreferences_text">Удобство использования</string>
-    <string name="oneuiMode_primaryText">Режим OneUI</string>
-    <string name="oneuiMode_secondaryText">Шапка на пол экрана</string>
-    <string name="oneuiMode_oneuiStyle_primaryText">Шапка по центру</string>
-    <string name="oneuiMode_oneuiStyle_secondaryText">Как на сосунгах</string>
-
-    <string name="otherPreferences_text">Другое</string>
-
     <!-- диалоговые окна -->
 
     <string name="name_dialog_title">Имя игрока</string>
     <string name="name_dialog_placeholder">Ваше имя</string>
     <string name="finish_dialog_message">Поздравляем! Квиз пройден.</string>
-    <string name="ok">ОК</string>
-    <string name="cancel">Отмена</string>
 
-    <!-- информация-активити -->
-
-    <string name="about_label">Информация</string>
-
-    <string name="about_logo_desc">Логотип</string>
-    <string name="about_text_os">Loshica OS 5.0</string>
-    <string name="about_text_copyright">Loshica Corporation\u2122\n\u00a9 all rights reserved</string>
 </resources>

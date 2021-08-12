@@ -15,9 +15,8 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Theme
-        Theme theme = new Theme(this);
-        theme.set();
-        SharedPreferences settings = theme.getSettings();
+//        Theme theme = new Theme(this);
+//        SharedPreferences settings = theme.settings;
         //
 
         super.onCreate(savedInstanceState);
@@ -27,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity implements
             .replace(R.id.settings, new SettingsFragment())
             .commit();
 
-        settings.registerOnSharedPreferenceChangeListener(this);
+//        settings.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -44,8 +43,7 @@ public class SettingsActivity extends AppCompatActivity implements
         // TODO Проверять общие настройки, ключевые параметры и изменять UI
         // или поведение приложения, если потребуется.
 
-        if (key.equals("AccentColor")) recreate();
-        else if (key.equals("DarkMode")) recreate();
+        if (key.equals("accent") || key.equals("theme")) recreate();
     }
 
     public void onBackPressed() {

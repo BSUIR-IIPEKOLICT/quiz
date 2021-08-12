@@ -18,8 +18,6 @@ import java.text.MessageFormat;
 
 public class FinishFragment extends Fragment implements View.OnClickListener {
 
-    String textDefault;
-
     TextView tv;
     Button btn;
     FinishFragmentListener listener;
@@ -34,8 +32,6 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         btn = root.findViewById(R.id.finish_back);
         btn.setOnClickListener(this);
 
-        textDefault = App.res().getString(R.string.finish_default_text);
-
         return root;
     }
 
@@ -44,6 +40,7 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         String generic = MessageFormat.format(App.res().getString(R.string.finish_text), App.name,
             App.score);
+        String textDefault = App.res().getString(R.string.finish_default_text);
         tv.setText((!App.name.equals("")) ? generic : textDefault);
     }
 
@@ -55,11 +52,8 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            listener = (FinishFragmentListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + e);
-        }
+        try { listener = (FinishFragmentListener) context; }
+        catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
 
     public interface FinishFragmentListener {

@@ -16,13 +16,17 @@ public class QuestionActivity extends AppCompatActivity implements
     QuestionFragment.QuestionFragmentListener,
     FinishFragment.FinishFragmentListener {
 
+    User newUser;
+    User existsUser;
+    boolean exists;
+
     ViewPager2 qp;
     QuestionAdapter qa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Theme
-        new Theme(this).set();
+//        new Theme(this);
         //
 
         super.onCreate(savedInstanceState);
@@ -67,7 +71,9 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     public void next(boolean isCorrect) {
-        if (App.inProcess && isCorrect) { App.score += 5; }
+        if (App.inProcess && isCorrect) App.score += 5;
+        Toast.makeText(getApplicationContext(), (isCorrect) ? R.string.question_right :
+            R.string.question_wrong, Toast.LENGTH_SHORT).show();
         qp.setCurrentItem(qp.getCurrentItem() + 1, true);
     }
 
@@ -86,26 +92,28 @@ public class QuestionActivity extends AppCompatActivity implements
     }
 
     public void onBackPressed() {
-        if ((qp.getCurrentItem() > 0)) { qp.setCurrentItem(qp.getCurrentItem() - 1, true); }
-        else { startActivity(new Intent(this, MainActivity.class)); }
+        if ((qp.getCurrentItem() > 0)) qp.setCurrentItem(qp.getCurrentItem() - 1, true);
+        else startActivity(new Intent(this, MainActivity.class));
     }
 
     public void checkSet() {
-        User user = new User(App.name, App.score);
-        boolean exists = false;
+        newUser = new User(App.name, App.score);
+        existsUser = null;
+        exists = false;
 
-        if (!App.usersJava.contains(user)) {
-            for (User item : App.usersJava) {
-                if (item.name.equals(user.name)) {
+        if (!App.usersJava.contains(newUser)) {
+            for (User u : App.usersJava) {
+                if (u.name.equals(newUser.name)) {
                     exists = true;
-                    if (item.score < user.score) {
-                        App.usersJava.remove(item);
-                        App.usersJson.remove(App.json.toJson(item, User.class));
-                        save(user);
-                    }
+                    if (u.score < newUser.score) existsUser = u;
                 }
             }
-            if (!exists) { save(user); }
+            if (!exists) save(newUser);
+            else if (exists && existsUser != null) {
+                App.usersJava.remove(existsUser);
+                App.usersJson.remove(App.json.toJson(existsUser, User.class));
+                save(newUser);
+            }
         }
     }
 

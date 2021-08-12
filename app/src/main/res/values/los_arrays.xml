@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- цвет акцента (названия+значения) -->
+
+    <string-array name="accent_entries">
+        <item>Стоковый</item>
+        <item>Коричневый</item>
+        <item>Оранжевый</item>
+        <item>Светло-зеленый</item>
+        <item>Фиолетовый</item>
+        <item>Голубой</item>
+        <item>Розовый</item>
+        <item>AOSP</item>
+        <item>Красный</item>
+        <item>Темно-синий</item>
+        <item>Темно-зеленый</item>
+        <item>Черный/Белый</item>
+    </string-array>
+    <string-array name="accent_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+
+    <!--  -->
+
+</resources>

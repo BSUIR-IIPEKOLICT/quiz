@@ -7,14 +7,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.MessageFormat;
+import java.util.Random;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
 
@@ -26,13 +31,20 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     private int img;
     private int[] numbers;
 
+    TextView timerView;
     ImageView iv;
     TextView tv;
     RadioButton rb;
     RadioGroup rg;
+    Button help;
 
+    private final float alpha = 0.3f;
     private int choose;
-    public Boolean isChecked = false;
+    private boolean isChecked = false;
+    private int timerCounter;
+    int random;
+
+    CountDownTimer timer;
     QuestionFragmentListener listener;
 
     /**
@@ -70,9 +82,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_question, container, false);
 
+        timerView = root.findViewById(R.id.question_timer);
         iv = root.findViewById(R.id.question_iv);
         tv = root.findViewById(R.id.question_tv);
         rg = root.findViewById(R.id.question_rg);
+        help = root.findViewById(R.id.question_help);
 
         iv.setImageResource(img);
         tv.setText(strings[0]);
@@ -81,6 +95,23 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             rb.setText(strings[i + 1]);
             rb.setOnClickListener(this);
         }
+        help.setOnClickListener(this);
+
+        timerCounter = 15;
+        if (!isChecked) {
+            timer = new CountDownTimer(15000, 1000) {
+
+                @SuppressLint("SetTextI18n")
+                public void onTick(long millisUntilFinished) {
+                    timerView.setText(Integer.toString(timerCounter--));
+                }
+
+                public void onFinish() {
+                    isChecked = true;
+                    listener.next(false);
+                }
+            }.start();
+        }
 
         return root;
     }
@@ -88,13 +119,26 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        if (!App.inProcess) { radioOff(); }
+        help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
+
+        if (!App.inProcess) {
+            radioOff();
+            helpOff();
+        } else if (App.help == 0) helpOff();
+        if (timerCounter == 0) timerView.setText("");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        timerCounter = 0;
+        timer.cancel();
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        if (!isChecked && App.inProcess) {
+        if (!isChecked && App.inProcess && v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
                     choose = i;
@@ -103,19 +147,19 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             }
             radioOff();
             listener.next(isCorrect(numbers[0], choose));
-        } else {
-            listener.next(false);
+        } else if (!isChecked && App.inProcess && v.getId() == R.id.question_help) {
+            App.help--;
+            help();
+            help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
+            helpOff();
         }
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            listener = (QuestionFragmentListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + e);
-        }
+        try { listener = (QuestionFragmentListener) context; }
+        catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
 
     public interface QuestionFragmentListener {
@@ -127,7 +171,26 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     private void radioOff() {
         for (int i = 0; i < rg.getChildCount(); i++) {
             rg.getChildAt(i).setClickable(false);
-            rg.getChildAt(i).setAlpha((float) 0.3);
+            rg.getChildAt(i).setAlpha(alpha);
         }
+    }
+
+    private void help() {
+        while (true) {
+            random = new Random().nextInt(rg.getChildCount());
+            if (random == numbers[0]) continue;
+            else break;
+        }
+        for (int i = 0; i < rg.getChildCount(); i++) {
+            if (i != numbers[0] && i != random) {
+                rg.getChildAt(i).setClickable(false);
+                rg.getChildAt(i).setAlpha(alpha);
+            }
+        }
+    }
+
+    private void helpOff() {
+        help.setClickable(false);
+        help.setAlpha(alpha);
     }
 }

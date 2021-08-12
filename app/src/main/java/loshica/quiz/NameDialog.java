@@ -40,11 +40,8 @@ public class NameDialog extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            listener = (NameDialogListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + e);
-        }
+        try { listener = (NameDialogListener) context; }
+        catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
 
     public interface NameDialogListener {

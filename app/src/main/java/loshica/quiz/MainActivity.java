@@ -2,7 +2,6 @@ package loshica.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,11 +18,10 @@ public class MainActivity extends AppCompatActivity implements
     Button leaderboard;
     NameDialog dialog;
 
-    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Theme
-        new Theme(this).set();
+//        new Theme(this);
         //
 
         super.onCreate(savedInstanceState);
@@ -44,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity((item.getItemId() == R.id.action_settings) ?
-            new Intent(this, SettingsActivity.class) : null);
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -54,9 +53,7 @@ public class MainActivity extends AppCompatActivity implements
         if (v.getId() == R.id.main_play) {
             dialog = new NameDialog();
             dialog.show(getSupportFragmentManager(), null);
-        } else {
-            startActivity(new Intent(this, LeaderboardActivity.class));
-        }
+        } else startActivity(new Intent(this, LeaderboardActivity.class));
     }
 
     @Override

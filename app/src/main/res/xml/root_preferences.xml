@@ -5,17 +5,17 @@
 
         <ListPreference
             android:id="@+id/accentColor"
-            app:defaultValue="Stock"
-            app:entries="@array/accentColor_entries"
-            app:entryValues="@array/accentColor_values"
-            app:key="AccentColor"
+            app:defaultValue='0'
+            app:entries="@array/accent_entries"
+            app:entryValues="@array/accent_values"
+            app:key="accent"
             app:icon="@drawable/ic_accent_icon"
             app:title="@string/accentColor_header_text"
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreference
             android:id="@+id/darkMode"
-            app:key="DarkMode"
+            app:key="theme"
             app:enabled="true"
             app:defaultValue="true"
             app:icon="@drawable/ic_color_icon"
