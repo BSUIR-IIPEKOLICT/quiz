@@ -1,24 +1,24 @@
 package loshica.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements
-    View.OnClickListener,
     NameDialog.NameDialogListener {
 
-    Button play;
-    Button leaderboard;
-    NameDialog dialog;
+    ViewPager2 mp;
+    MainAdapter ma;
+    TabLayout tab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +29,29 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        play = findViewById(R.id.main_play);
-        leaderboard = findViewById(R.id.main_leaderboard);
+        // TODO: Main pager
+        mp = findViewById(R.id.main_pager);
+        ma = new MainAdapter(this);
+        mp.setAdapter(ma);
+        mp.setCurrentItem(0);
+        mp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                Objects.requireNonNull(getSupportActionBar()).setTitle(
+                    getResources().getStringArray(R.array.main_tabs)[position]
+                );
+            }
+        });
+        mp.setPageTransformer(new MyPageTransformer());
+        //
 
-        play.setOnClickListener(this);
-        leaderboard.setOnClickListener(this);
+        // TabLayout
+        tab = findViewById(R.id.main_tab);
+        new TabLayoutMediator(tab, mp, (tab, position) ->
+            tab.setText(getResources().getStringArray(R.array.main_tabs)[position])
+        ).attach();
+        //
     }
 
     @Override
@@ -51,18 +69,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.main_play) {
-            dialog = new NameDialog();
-            dialog.show(getSupportFragmentManager(), null);
-        } else startActivity(new Intent(this, LeaderboardActivity.class));
-    }
-
-    @Override
     public void name(String username) {
         App.name = username;
         App.score = 0;
         App.inProcess = true;
         startActivity(new Intent(this, QuestionActivity.class));
+    }
+
+    public void onBackPressed() {
+        if ((mp.getCurrentItem() > 0)) mp.setCurrentItem(0, true);
     }
 }

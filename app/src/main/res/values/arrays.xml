@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- tabs -->
+
+    <string-array name="main_tabs">
+        <item>Главная</item>
+        <item>Доска почета</item>
+    </string-array>
+
+    <!--    -->
+
     <!-- questions -->
 
     <string-array name="q1_strings">

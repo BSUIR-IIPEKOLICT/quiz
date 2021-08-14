@@ -4,7 +4,7 @@ import android.view.View;
 
 import androidx.viewpager2.widget.ViewPager2;
 
-public class QuestionTransformer implements ViewPager2.PageTransformer {
+public class MyPageTransformer implements ViewPager2.PageTransformer {
 
     private static final float MIN_SCALE = 0.75f;
 

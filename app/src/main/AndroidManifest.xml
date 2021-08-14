@@ -20,14 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LeaderboardActivity"
-            android:label="@string/leaderboard_label"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="loshica.quiz.MainActivity" />
-        </activity>
-        <activity
             android:name=".QuestionActivity"
             android:label="@string/question_label"
             android:parentActivityName=".MainActivity">

@@ -40,11 +40,6 @@ public class QuestionActivity extends AppCompatActivity implements
         qp.setCurrentItem(0);
         qp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
@@ -53,13 +48,8 @@ public class QuestionActivity extends AppCompatActivity implements
                     App.inProcess = false;
                 }
             }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                super.onPageScrollStateChanged(state);
-            }
         });
-        qp.setPageTransformer(new QuestionTransformer());
+        qp.setPageTransformer(new MyPageTransformer());
         //
     }
 
