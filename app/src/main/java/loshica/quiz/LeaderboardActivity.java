@@ -26,7 +26,7 @@ public class LeaderboardActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Theme
-//        new Theme(this);
+        new Theme(this);
         //
 
         super.onCreate(savedInstanceState);

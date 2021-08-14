@@ -38,7 +38,7 @@
 
     -->
 
-    <PreferenceCategory app:title="@string/otherPreferences_text">
+<!--    <PreferenceCategory app:title="@string/otherPreferences_text">-->
 
-    </PreferenceCategory>
+<!--    </PreferenceCategory>-->
 </PreferenceScreen>

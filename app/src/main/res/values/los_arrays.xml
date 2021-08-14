@@ -4,17 +4,17 @@
     <!-- цвет акцента (названия+значения) -->
 
     <string-array name="accent_entries">
-        <item>Стоковый</item>
-        <item>Коричневый</item>
-        <item>Оранжевый</item>
-        <item>Светло-зеленый</item>
+        <item>Oxygen</item>
         <item>Фиолетовый</item>
-        <item>Голубой</item>
-        <item>Розовый</item>
-        <item>AOSP</item>
         <item>Красный</item>
+        <item>Коричневый</item>
+        <item>Голубой</item>
         <item>Темно-синий</item>
+        <item>Оранжевый</item>
+        <item>Розовый</item>
         <item>Темно-зеленый</item>
+        <item>Светло-зеленый</item>
+        <item>AOSP</item>
         <item>Черный/Белый</item>
     </string-array>
     <string-array name="accent_values">
@@ -30,6 +30,21 @@
         <item>9</item>
         <item>10</item>
         <item>11</item>
+    </string-array>
+
+    <!--  -->
+
+    <!-- тема (названия+значения) -->
+
+    <string-array name="theme_labels">
+        <item>Как в системе</item>
+        <item>Темная</item>
+        <item>Светлая</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
     <!--  -->
