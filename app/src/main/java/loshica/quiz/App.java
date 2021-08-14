@@ -6,9 +6,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
 
 public class App extends Application {
@@ -30,6 +39,9 @@ public class App extends Application {
     public static boolean inProcess = false;
     public static boolean updateLeaderboard = false;
 
+    public static Map<Integer, Boolean> isChecked = new HashMap<>();
+    public static Map<Integer, Integer> choose = new HashMap<>();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,6 +53,11 @@ public class App extends Application {
         for (String itemJson : usersJson) {
             User itemJava = json.fromJson(itemJson, User.class);
             usersJava.add(itemJava);
+        }
+
+        for (int i = 0; i < Question.questions.length; i++) {
+            isChecked.put(i, false);
+            choose.put(i, -1);
         }
     }
 

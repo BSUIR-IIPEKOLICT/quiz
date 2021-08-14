@@ -19,7 +19,7 @@
             android:textSize="32sp"
             android:textColor="?attr/colorAccent"
             android:textStyle="bold"
-            android:text="@string/question_timer"
+            tools:text="@string/question_timer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

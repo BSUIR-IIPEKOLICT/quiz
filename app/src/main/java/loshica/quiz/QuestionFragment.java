@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.MessageFormat;
 import java.util.Random;
@@ -25,11 +24,12 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_STRINGS = "strings";
     private static final String ARG_IMG = "img";
-    private static final String ARG_NUMBERS = "numbers";
+    private static final String ARG_ID = "id";
 
     private String[] strings;
     private int img;
-    private int[] numbers;
+    private int right;
+    private int id;
 
     TextView timerView;
     ImageView iv;
@@ -39,8 +39,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     Button help;
 
     private final float alpha = 0.3f;
-    private int choose;
-    private boolean isChecked = false;
+//    private int choose;
+//    private boolean isChecked;
     private int timerCounter;
     int random;
 
@@ -57,10 +57,14 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     public static QuestionFragment newInstance(Question q) {
         QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
+
+        for (int i = 0; i < Question.questions.length; i++) {
+            if (Question.questions[i] == q) args.putInt(ARG_ID, i);
+        }
+
         // TODO: My question obj parser
         args.putStringArray(ARG_STRINGS, q.strings);
         args.putInt(ARG_IMG, q.img);
-        args.putIntArray(ARG_NUMBERS, q.numbers);
         //
         fragment.setArguments(args);
         return fragment;
@@ -72,7 +76,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             strings = getArguments().getStringArray(ARG_STRINGS);
             img = getArguments().getInt(ARG_IMG);
-            numbers = getArguments().getIntArray(ARG_NUMBERS);
+            id = getArguments().getInt(ARG_ID);
         }
     }
 
@@ -81,6 +85,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_question, container, false);
+
+//        isChecked = App.isChecked.get(id);
+        right = Integer.parseInt(strings[5]);
 
         timerView = root.findViewById(R.id.question_timer);
         iv = root.findViewById(R.id.question_iv);
@@ -98,7 +105,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         help.setOnClickListener(this);
 
         timerCounter = 15;
-        if (!isChecked) {
+        if (!App.isChecked.get(id)) {
             timer = new CountDownTimer(15000, 1000) {
 
                 @SuppressLint("SetTextI18n")
@@ -107,7 +114,10 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 }
 
                 public void onFinish() {
-                    isChecked = true;
+//                    App.isChecked.remove(id);
+//                    App.isChecked.add(id, true);
+                    App.isChecked.put(id, true);
+//                    isChecked = true;
                     listener.next(false);
                 }
             }.start();
@@ -121,33 +131,45 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
 
-        if (!App.inProcess) {
+        if (App.help == 0) helpOff();
+        if (timerCounter == 0 || App.isChecked.get(id)) timerView.setText("");
+        if (App.isChecked.get(id) || !App.inProcess) {
             radioOff();
             helpOff();
-        } else if (App.help == 0) helpOff();
-        if (timerCounter == 0) timerView.setText("");
+            check();
+        }
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onPause() {
         super.onPause();
         timerCounter = 0;
-        timer.cancel();
+        if (timer != null) timer.cancel();
+//        App.isChecked.remove(id);
+//        App.isChecked.add(id, true);
+        App.isChecked.put(id, true);
+//        isChecked = true;
+        check();
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        if (!isChecked && App.inProcess && v.getId() != R.id.question_help) {
+        if (!App.isChecked.get(id) && App.inProcess && v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
-                    choose = i;
-                    isChecked = true;
+//                    choose = i;
+                    App.choose.put(id, i);
+                    App.isChecked.put(id, true);
+//                    App.isChecked.remove(id);
+//                    App.isChecked.add(id, true);
                 }
             }
             radioOff();
-            listener.next(isCorrect(numbers[0], choose));
-        } else if (!isChecked && App.inProcess && v.getId() == R.id.question_help) {
+            check();
+            listener.next(isCorrect(right, App.choose.get(id)));
+        } else if (!App.isChecked.get(id) && App.inProcess && v.getId() == R.id.question_help) {
             App.help--;
             help();
             help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
@@ -175,14 +197,26 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void help() {
-        while (true) {
-            random = new Random().nextInt(rg.getChildCount());
-            if (random == numbers[0]) continue;
-            else break;
-        }
+    private void check() {
         for (int i = 0; i < rg.getChildCount(); i++) {
-            if (i != numbers[0] && i != random) {
+            if (i == right) {
+                rb = (RadioButton) rg.getChildAt(i);
+                rb.setTextColor(requireActivity().getResources().getColor(
+                    R.color.right_answer, requireActivity().getTheme()
+                ));
+            } else if (i == App.choose.get(id)) {
+                rb = (RadioButton) rg.getChildAt(i);
+                rb.setTextColor(requireActivity().getResources().getColor(
+                    R.color.wrong_answer, requireActivity().getTheme()
+                ));
+            }
+        }
+    }
+
+    private void help() {
+        do { random = new Random().nextInt(rg.getChildCount()); } while (random == right);
+        for (int i = 0; i < rg.getChildCount(); i++) {
+            if (i != right && i != random) {
                 rg.getChildAt(i).setClickable(false);
                 rg.getChildAt(i).setAlpha(alpha);
             }

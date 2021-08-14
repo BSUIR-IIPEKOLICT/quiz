@@ -2,7 +2,8 @@
 <resources>
 
     <style name="SectionHeaderStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:paddingVertical">@dimen/small_padding</item>
+        <item name="android:paddingTop">@dimen/base_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
         <item name="android:paddingHorizontal">@dimen/base_padding</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

@@ -78,5 +78,6 @@ public class MainActivity extends AppCompatActivity implements
 
     public void onBackPressed() {
         if ((mp.getCurrentItem() > 0)) mp.setCurrentItem(0, true);
+        else finish();
     }
 }

@@ -12,18 +12,115 @@
 
     <!-- questions -->
 
-    <string-array name="q1_strings">
+    <string-array name="q1">
         <item>Кто изображен на картинке?</item>
 
         <item>Гитлер</item>
         <item>Парень кафтанчиковой</item>
         <item>Пидорас</item>
         <item>Крутой мужык</item>
+
+        <item>2</item>
     </string-array>
 
-    <integer-array name="q1_numbers">
+    <string-array name="q2">
+        <item>Ты нацист?</item>
+
+        <item>Не понял</item>
+        <item>Всмысле эээууав диды воивали</item>
+        <item>ПНХ</item>
+        <item>Хайль гитлер!</item>
+
+        <item>3</item>
+    </string-array>
+
+    <string-array name="q3">
+        <item>Кто победил на выборах 2020?</item>
+
+        <item>Цветочки</item>
+        <item>Твоя мамка</item>
+        <item>Лукашенко</item>
+        <item>Гитлер</item>
+
+        <item>0</item>
+    </string-array>
+
+    <string-array name="q4">
+        <item>Кто изображен на картинке?</item>
+
+        <item>Мицкевич</item>
+        <item>Омоновец</item>
+        <item>Настоящий мужчина</item>
+        <item>Какой-то додик</item>
+
         <item>2</item>
-    </integer-array>
+    </string-array>
+
+    <string-array name="q5">
+        <item>Нахуя ты вообще проходишь этот квиз?</item>
+
+        <item>Я долбоеб</item>
+        <item>Делать нехуй</item>
+        <item>Тебе какое дело?</item>
+        <item>У мамки своей спроси</item>
+
+        <item>1</item>
+    </string-array>
+
+    <string-array name="q6">
+        <item>Что изображено на картинке?</item>
+
+        <item>Мой личный транспорт</item>
+        <item>Автозак</item>
+        <item>Школьный автобус</item>
+        <item>Ой все</item>
+
+        <item>0</item>
+    </string-array>
+
+    <string-array name="q7">
+        <item>Умеешь готовить борщ?</item>
+
+        <item>Зачем?</item>
+        <item>Каждый день ебошу</item>
+        <item>Нет</item>
+        <item>А вот не скажу</item>
+
+        <item>1</item>
+    </string-array>
+
+    <string-array name="q8">
+        <item>Что на фотокарточке?</item>
+
+        <item>Какая-то залупа</item>
+        <item>Хуйня</item>
+        <item>Столица мира Лошица</item>
+        <item>Ой все</item>
+
+        <item>2</item>
+    </string-array>
+
+    <string-array name="q9">
+        <item>Чей крым?</item>
+
+        <item>Лошицкий</item>
+        <item>Украинский</item>
+        <item>Русские, вперед!</item>
+        <item>Пендосский</item>
+
+        <item>0</item>
+    </string-array>
+
+    <string-array name="q10">
+        <item>Нравится Java?</item>
+
+        <item>Фу нахуй, мерзость</item>
+        <item>Обожаю</item>
+        <item>Да ты заебал</item>
+        <item>Ой все</item>
+
+        <item>0</item>
+    </string-array>
 
     <!--    -->
 
