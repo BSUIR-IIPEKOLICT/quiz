@@ -1,27 +1,29 @@
 package loshica.quiz;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckedTextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SettingsActivity extends AppCompatActivity implements
+public class LOSSettingsActivity extends AppCompatActivity implements
     View.OnClickListener,
-    RadioButtonDialog.RadioButtonDialogListener {
+    LOSRadioButtonDialog.RadioButtonDialogListener,
+    LOSAccentDialog.LOSAccentDialogListener {
+
+    LOSAccentDialog accentDialog;
+    LOSRadioButtonDialog themeDialog;
 
     CheckedTextView accentView, darkView, aboutView;
-    RadioButtonDialog rbd;
-    AboutDialog ad;
     SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Theme
-        Theme theme = new Theme(this);
+        // LOSTheme
+        LOSTheme theme = new LOSTheme(this);
         settings = theme.settings;
         //
 
@@ -37,33 +39,28 @@ public class SettingsActivity extends AppCompatActivity implements
         aboutView.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.accent:
-                rbd = RadioButtonDialog.newInstance(
-                    getResources().getIntArray(R.array.accent_values),
-                    getResources().getStringArray(R.array.accent_entries),
-                    Theme.ACCENT_KEY, Theme.SETTINGS, Theme.ACCENT_DEFAULT,
-                    R.string.accentColor_header_text,
-                    settings.getInt(Theme.ACCENT_KEY, Theme.ACCENT_DEFAULT)
-                );
+                accentDialog = new LOSAccentDialog();
+                accentDialog.show(getSupportFragmentManager(), null);
                 break;
             case R.id.dark:
-                rbd = RadioButtonDialog.newInstance(
+                themeDialog = LOSRadioButtonDialog.newInstance(
                     getResources().getIntArray(R.array.theme_values),
                     getResources().getStringArray(R.array.theme_labels),
-                    Theme.THEME_KEY, Theme.SETTINGS, Theme.THEME_DEFAULT,
-                    R.string.darkMode_text,
-                    settings.getInt(Theme.THEME_KEY, Theme.THEME_DEFAULT)
+                    LOSTheme.THEME_KEY, LOSTheme.SETTINGS, LOSTheme.THEME_DEFAULT,
+                    R.string.theme_section,
+                    settings.getInt(LOSTheme.THEME_KEY, LOSTheme.THEME_DEFAULT)
                 );
+                themeDialog.show(getSupportFragmentManager(), null);
                 break;
             default:
-                ad = new AboutDialog();
+                new LOSAboutDialog().show(getSupportFragmentManager(), null);
                 break;
         }
-        if (rbd != null) rbd.show(getSupportFragmentManager(), null);
-        else ad.show(getSupportFragmentManager(), null);
     }
 
     public void onBackPressed() { startActivity(new Intent(this, MainActivity.class)); }
@@ -73,7 +70,16 @@ public class SettingsActivity extends AppCompatActivity implements
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt(key, value);
         editor.apply();
-        rbd.dismiss();
+        themeDialog.dismiss();
+        recreate();
+    }
+
+    @Override
+    public void setAccent(int value) {
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt(LOSTheme.ACCENT_KEY, value);
+        editor.apply();
+        accentDialog.dismiss();
         recreate();
     }
 }

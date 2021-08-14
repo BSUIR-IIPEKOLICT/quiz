@@ -8,14 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class RadioButtonDialog extends DialogFragment {
+public class LOSRadioButtonDialog extends DialogFragment {
 
     private static final String ARG_VALUES = "values";
     private static final String ARG_LABELS = "labels";
@@ -36,10 +35,10 @@ public class RadioButtonDialog extends DialogFragment {
     RadioGroup rg;
     RadioButtonDialogListener listener;
 
-    public static RadioButtonDialog newInstance(
+    public static LOSRadioButtonDialog newInstance(
         int[] values, String[] labels, String key, String settings, int def, int title, int checked
     ) {
-        RadioButtonDialog dialog = new RadioButtonDialog();
+        LOSRadioButtonDialog dialog = new LOSRadioButtonDialog();
         Bundle args = new Bundle();
         args.putIntArray(ARG_VALUES, values);
         args.putStringArray(ARG_LABELS, labels);
@@ -86,7 +85,7 @@ public class RadioButtonDialog extends DialogFragment {
             .setNegativeButton(R.string.cancel, null)
             .create();
 
-        LOSDialog.convert(dialog);
+        LOSUtils.dialog(dialog);
         return dialog;
     }
 

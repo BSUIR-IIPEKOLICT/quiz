@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class AboutDialog extends DialogFragment {
+public class LOSAboutDialog extends DialogFragment {
 
     @NonNull
     @Override
@@ -21,11 +21,11 @@ public class AboutDialog extends DialogFragment {
 
         Dialog dialog = builder
             .setView(root)
-            .setTitle(requireActivity().getResources().getText(R.string.about_label))
+            .setTitle(requireActivity().getResources().getText(R.string.about_section))
             .setPositiveButton(R.string.ok, null)
             .create();
 
-        LOSDialog.convert(dialog);
+        LOSUtils.dialog(dialog);
         return dialog;
     }
 }

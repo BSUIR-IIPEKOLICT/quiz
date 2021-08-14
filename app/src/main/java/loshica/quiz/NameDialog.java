@@ -26,7 +26,7 @@ public class NameDialog extends DialogFragment {
         @SuppressLint("InflateParams") View root = inflater.inflate(R.layout.dialog_name, null);
         et = root.findViewById(R.id.name_dialog_input);
 
-        return builder
+        Dialog d = builder
             .setView(root)
             .setTitle(R.string.name_dialog_title)
             .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -35,6 +35,9 @@ public class NameDialog extends DialogFragment {
             })
             .setNegativeButton(R.string.cancel, null)
             .create();
+
+        LOSUtils.dialog(d);
+        return d;
     }
 
     @Override

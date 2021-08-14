@@ -25,8 +25,8 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Theme
-        new Theme(this);
+        // LOSTheme
+        new LOSTheme(this);
         //
 
         super.onCreate(savedInstanceState);
@@ -76,7 +76,7 @@ public class QuestionActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
+            startActivity(new Intent(this, LOSSettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

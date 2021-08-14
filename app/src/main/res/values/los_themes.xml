@@ -15,8 +15,6 @@
     <attr name="secondaryAlpha" format="reference" />
     <attr name="disabledAlpha" format="reference" />
 
-    <attr name="aboutLogo" format="reference" />
-
     <!-- Материнская темная тема -->
 
     <style name="AppTheme" parent="Theme.AppCompat">
@@ -24,15 +22,13 @@
         <item name="actionBarStyle">@style/ActionBarStyle</item>
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
-        <item name="preferenceTheme">@style/PreferenceTheme</item>
-        <item name="dialogCornerRadius">20dp</item>
+        <item name="dialogCornerRadius">@dimen/base_corner</item>
         <item name="android:windowContentOverlay">@drawable/actionbar_shadow_dark</item>
 
         <item name="secondaryAlpha">@dimen/secondary_alpha</item>
         <item name="disabledAlpha">@dimen/disabled_alpha</item>
 
-        <item name="aboutLogo">@drawable/about_logo_dark</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/base_text</item>
     </style>
 
     <!-- Черная тема -->
@@ -46,7 +42,6 @@
         <item name="secondaryTextColor">@color/ashen</item>
         <item name="switchThumbColor">@color/lightBeige</item>
         <item name="switchDisabledThumbColor">@color/darkBeige</item>
-        <!--<item name="alertDialogStyle">@style/DialogStyle</item>-->
     </style>
 
     <style name="Theme_BlackStock" parent="Theme_Black">
@@ -103,14 +98,12 @@
         <item name="android:statusBarColor">@color/black</item>
         <item name="actionBarStyle">@style/ActionBarStyle</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
-        <item name="preferenceTheme">@style/PreferenceTheme</item>
-        <item name="dialogCornerRadius">20dp</item>
+        <item name="dialogCornerRadius">@dimen/base_corner</item>
 
         <item name="secondaryAlpha">@dimen/secondary_alpha</item>
         <item name="disabledAlpha">@dimen/disabled_alpha</item>
 
-        <item name="aboutLogo">@drawable/about_logo_light</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/base_text</item>
     </style>
 
     <!-- Светлая тема -->
@@ -173,20 +166,4 @@
     <style name="Theme_LightBlack" parent="Theme_Light">
         <item name="colorAccent">@color/black</item>
     </style>
-
-    <!-- -->
-
-    <style name="Theme_oneui" parent="Theme_LightStock">
-        <item name="actionBarSize">300dp</item>
-        <!--<item name="actionBarStyle"></item>-->
-    </style>
-
-    <style name="Theme_BlackStock.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme_BlackStock.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme_BlackStock.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="6">
+
+    <!--    <androidx.constraintlayout.helper.widget.Flow-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:constraint_referenced_ids="button2,button2"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" >-->
+    <!--    </androidx.constraintlayout.helper.widget.Flow>-->
+
+    <!--    <TableLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:visibility="invisible">-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content" />-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content" />-->
+
+    <!--    </TableLayout>-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/1"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Button"-->
+    <!--        tools:layout_editor_absoluteX="190dp"-->
+    <!--        tools:layout_editor_absoluteY="381dp" />-->
+
+
+    <!--    <RadioGroup-->
+    <!--        android:id="@+id/accent_rg"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+    <!--        </TableRow>-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+
+    <!--            <RadioButton-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content" />-->
+    <!--        </TableRow>-->
+
+    <!--    </RadioGroup>-->
+
+
+    <RadioGroup
+        android:id="@+id/accent_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" />
+    </RadioGroup>
+
+<!--    <TableLayout-->
+<!--        android:id="@+id/accent_table"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TableRow-->
+<!--            android:id="@+id/accent_row1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:theme="@style/ColoredBthStyle"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="50dp" />&ndash;&gt;-->
+
+<!--        </TableRow>-->
+
+<!--        <TableRow-->
+<!--            android:id="@+id/accent_row2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:layout_editor_absoluteX="411dp">-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/lightGreen"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/aosp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/lightGreen"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/red"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/lightGreen"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <CheckedTextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_margin="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@color/violet"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/colored_btn_text"&ndash;&gt;-->
+<!--&lt;!&ndash;                tools:text="@string/colored_radio_text" />&ndash;&gt;-->
+
+<!--        </TableRow>-->
+<!--    </TableLayout>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

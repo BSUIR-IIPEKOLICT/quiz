@@ -28,7 +28,7 @@
                 android:value="loshica.quiz.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".LOSSettingsActivity"
             android:label="@string/settings_label"
             android:parentActivityName=".MainActivity">
             <meta-data

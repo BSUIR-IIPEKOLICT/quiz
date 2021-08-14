@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class LOSDialog {
+public class LOSUtils {
 
-    public static void convert(Dialog dialog) {
+    public static void dialog(Dialog dialog) {
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
         wlp.gravity = Gravity.BOTTOM;
