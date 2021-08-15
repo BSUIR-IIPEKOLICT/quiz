@@ -64,10 +64,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
         // If theme changed -> apply new theme
-        if (theme != new LOSTheme(this).current) {
-            setTheme(new LOSTheme(this).current);
-            recreate();
-        }
+        if (theme != new LOSTheme(this).current) recreate();
         //
     }
 
