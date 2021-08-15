@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.text.MessageFormat;
 import java.util.Objects;
 
 public class QuestionActivity extends AppCompatActivity implements
@@ -46,6 +47,13 @@ public class QuestionActivity extends AppCompatActivity implements
                 if (App.inProcess && position == qa.getItemCount() - 1) {
                     checkSet();
                     App.inProcess = false;
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.finish_label);
+                } else {
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(
+                        MessageFormat.format(
+                            getResources().getString(R.string.question_label), position + 1
+                        )
+                    );
                 }
             }
         });

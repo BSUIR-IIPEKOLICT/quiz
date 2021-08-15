@@ -5,10 +5,6 @@
     <string name="leaderboard_text">Доска почета</string>
     <string name="null_text">null</string>
 
-    <!-- leaderboard -->
-
-    <string name="leaderboard_label">Доска почета</string>
-
     <!-- маин -->
 
     <string name="main_text">Квиз епта</string>
@@ -17,7 +13,7 @@
     <!-- question -->
 
     <string name="question_timer">15</string>
-    <string name="question_label">Вопросы</string>
+    <string name="question_label">Вопрос {0}</string>
     <string name="question_alt">Question image</string>
     <string name="question_help">50/50 ({0})</string>
 
@@ -26,6 +22,7 @@
 
     <!-- finish -->
 
+    <string name="finish_label">Финалочка</string>
     <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
     <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} суток ареста.</string>
 
@@ -33,6 +30,5 @@
 
     <string name="name_dialog_title">Имя игрока</string>
     <string name="name_dialog_placeholder">Ваше имя</string>
-    <string name="finish_dialog_message">Поздравляем! Квиз пройден.</string>
 
 </resources>

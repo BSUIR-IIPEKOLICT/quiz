@@ -55,13 +55,17 @@ public class App extends Application {
             usersJava.add(itemJava);
         }
 
-        for (int i = 0; i < Question.questions.length; i++) {
-            isChecked.put(i, false);
-            choose.put(i, -1);
-        }
+        updateMaps();
     }
 
     public static Context context() { return mContext; }
 
     public static Resources res() { return res; }
+
+    public static void updateMaps() {
+        for (int i = 0; i < Question.questions.length; i++) {
+            isChecked.put(i, false);
+            choose.put(i, -1);
+        }
+    }
 }

@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements
         App.name = username;
         App.score = 0;
         App.inProcess = true;
+        App.updateMaps();
         startActivity(new Intent(this, QuestionActivity.class));
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="loshica.quiz">
 
     <application
@@ -10,7 +11,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme_BlackStock"
-        android:name=".App">
+        android:name=".App"
+        tools:ignore="AllowBackup">
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,7 +24,9 @@
         <activity
             android:name=".QuestionActivity"
             android:label="@string/question_label"
-            android:parentActivityName=".MainActivity">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
+            tools:ignore="LockedOrientationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="loshica.quiz.MainActivity" />

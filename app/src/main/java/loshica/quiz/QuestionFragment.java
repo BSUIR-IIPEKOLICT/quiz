@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.Random;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
@@ -39,8 +40,6 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     Button help;
 
     private final float alpha = 0.3f;
-//    private int choose;
-//    private boolean isChecked;
     private int timerCounter;
     int random;
 
@@ -52,20 +51,19 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
      * this fragment using the provided parameters.
      *
      * @param q Question object with params.
+     * @param id Question id.
      * @return A new instance of fragment Question.
      */
-    public static QuestionFragment newInstance(Question q) {
+    public static QuestionFragment newInstance(Question q, int id) {
         QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
-
-        for (int i = 0; i < Question.questions.length; i++) {
-            if (Question.questions[i] == q) args.putInt(ARG_ID, i);
-        }
 
         // TODO: My question obj parser
         args.putStringArray(ARG_STRINGS, q.strings);
         args.putInt(ARG_IMG, q.img);
         //
+
+        args.putInt(ARG_ID, id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -80,13 +78,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_question, container, false);
 
-//        isChecked = App.isChecked.get(id);
         right = Integer.parseInt(strings[5]);
 
         timerView = root.findViewById(R.id.question_timer);
@@ -105,7 +101,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         help.setOnClickListener(this);
 
         timerCounter = 15;
-        if (!App.isChecked.get(id)) {
+        if (!Objects.requireNonNull(App.isChecked.get(id))) {
             timer = new CountDownTimer(15000, 1000) {
 
                 @SuppressLint("SetTextI18n")
@@ -114,10 +110,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 }
 
                 public void onFinish() {
-//                    App.isChecked.remove(id);
-//                    App.isChecked.add(id, true);
                     App.isChecked.put(id, true);
-//                    isChecked = true;
                     listener.next(false);
                 }
             }.start();
@@ -132,44 +125,36 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
 
         if (App.help == 0) helpOff();
-        if (timerCounter == 0 || App.isChecked.get(id)) timerView.setText("");
-        if (App.isChecked.get(id) || !App.inProcess) {
+        if (timerCounter == 0 || Objects.requireNonNull(App.isChecked.get(id))) timerView.setText("");
+        if (Objects.requireNonNull(App.isChecked.get(id)) || !App.inProcess) {
             radioOff();
             helpOff();
             check();
         }
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onPause() {
         super.onPause();
         timerCounter = 0;
         if (timer != null) timer.cancel();
-//        App.isChecked.remove(id);
-//        App.isChecked.add(id, true);
         App.isChecked.put(id, true);
-//        isChecked = true;
         check();
     }
 
-    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
-        if (!App.isChecked.get(id) && App.inProcess && v.getId() != R.id.question_help) {
+        if (!Objects.requireNonNull(App.isChecked.get(id)) && App.inProcess && v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
-//                    choose = i;
                     App.choose.put(id, i);
                     App.isChecked.put(id, true);
-//                    App.isChecked.remove(id);
-//                    App.isChecked.add(id, true);
                 }
             }
             radioOff();
             check();
-            listener.next(isCorrect(right, App.choose.get(id)));
-        } else if (!App.isChecked.get(id) && App.inProcess && v.getId() == R.id.question_help) {
+            listener.next(isCorrect(right, Objects.requireNonNull(App.choose.get(id))));
+        } else if (!Objects.requireNonNull(App.isChecked.get(id)) && App.inProcess && v.getId() == R.id.question_help) {
             App.help--;
             help();
             help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
@@ -204,7 +189,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.right_answer, requireActivity().getTheme()
                 ));
-            } else if (i == App.choose.get(id)) {
+            } else if (i == Objects.requireNonNull(App.choose.get(id))) {
                 rb = (RadioButton) rg.getChildAt(i);
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.wrong_answer, requireActivity().getTheme()
