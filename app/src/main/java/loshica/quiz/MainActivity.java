@@ -13,8 +13,13 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
+import loshica.vendor.LOSSettingsActivity;
+import loshica.vendor.LOSTheme;
+
 public class MainActivity extends AppCompatActivity implements
     NameDialog.NameDialogListener {
+
+    int theme;
 
     ViewPager2 mp;
     MainAdapter ma;
@@ -23,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // LOSTheme
-        new LOSTheme(this);
+        theme = new LOSTheme(this).current;
+        setTheme(theme);
         //
 
         super.onCreate(savedInstanceState);
@@ -51,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements
         new TabLayoutMediator(tab, mp, (tab, position) ->
             tab.setText(getResources().getStringArray(R.array.main_tabs)[position])
         ).attach();
+        //
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // If theme changed -> apply new theme
+        if (theme != new LOSTheme(this).current) {
+            setTheme(new LOSTheme(this).current);
+            recreate();
+        }
         //
     }
 

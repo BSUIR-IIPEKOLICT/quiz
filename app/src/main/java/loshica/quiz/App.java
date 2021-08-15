@@ -6,17 +6,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 

@@ -13,9 +13,14 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 import java.util.Objects;
 
+import loshica.vendor.LOSSettingsActivity;
+import loshica.vendor.LOSTheme;
+
 public class QuestionActivity extends AppCompatActivity implements
     QuestionFragment.QuestionFragmentListener,
     FinishFragment.FinishFragmentListener {
+
+    int theme;
 
     User newUser;
     User existsUser;
@@ -27,7 +32,8 @@ public class QuestionActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // LOSTheme
-        new LOSTheme(this);
+        theme = new LOSTheme(this).current;
+        setTheme(theme);
         //
 
         super.onCreate(savedInstanceState);
@@ -58,6 +64,17 @@ public class QuestionActivity extends AppCompatActivity implements
             }
         });
         qp.setPageTransformer(new MyPageTransformer());
+        //
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // If theme changed -> apply new theme
+        if (theme != new LOSTheme(this).current) {
+            setTheme(new LOSTheme(this).current);
+            recreate();
+        }
         //
     }
 

@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import loshica.vendor.LOSUtils;
+
 public class NameDialog extends DialogFragment {
 
     private EditText et;

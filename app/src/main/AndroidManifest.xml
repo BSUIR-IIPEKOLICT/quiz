@@ -8,13 +8,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme_BlackStock"
-        android:name=".App"
+        android:theme="@style/LOSTheme_BlackRed"
+        android:name="loshica.quiz.App"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="loshica.quiz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,19 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuestionActivity"
+            android:name="loshica.quiz.QuestionActivity"
             android:label="@string/question_label"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="loshica.quiz.MainActivity"
             tools:ignore="LockedOrientationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="loshica.quiz.MainActivity" />
         </activity>
         <activity
-            android:name=".LOSSettingsActivity"
+            android:name="loshica.vendor.LOSSettingsActivity"
             android:label="@string/settings_label"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="loshica.quiz.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="loshica.quiz.MainActivity" />
