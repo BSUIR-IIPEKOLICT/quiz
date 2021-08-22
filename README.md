@@ -19,13 +19,13 @@
 - никаких плюшек языка
 - никаких сложных наворотов
 - вообще ничего лишнего
->Ветка java-be, [перейти](https://github.com/IIPEKOLICT/quiz/blob/java-be/)
+>Ветка java-be, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java-be/)
 
 ### Community Edition
 - Java
 - используются Switch, тернарные операторы, сокращенный синтаксис
 - более продвинутая логика
->Ветка java-ce, [перейти](https://github.com/IIPEKOLICT/quiz/blob/java-ce/)
+>Ветка java-ce, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java-ce/)
 
 ### Java Edition
 - Java
@@ -33,15 +33,15 @@
 (ничто не мешает использовать эту версию, но тогда будет не лишним и разобраться хотя бы минимально в библиотеке, что 
 не очень просто...)
 - последняя версия на Java (~~наконец-то!~~)
->Ветка java, [перейти](https://github.com/IIPEKOLICT/quiz/blob/java/)
+>Ветка java, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java/)
 
 ### Main
 - Kotlin
 - последняя стабильная версия на котлине
->Ветка main, [перейти](https://github.com/IIPEKOLICT/quiz/blob/main/)
+>Ветка main, [перейти](https://github.com/IIPEKOLICT/quiz/tree/main/)
 
 
 ### Kotlin
 - Kotlin
 - тестируемые фичи и самые свежие плюшки
->Ветка kotlin, [перейти](https://github.com/IIPEKOLICT/quiz/blob/kotlin/)
+>Ветка kotlin, [перейти](https://github.com/IIPEKOLICT/quiz/tree/kotlin/)
