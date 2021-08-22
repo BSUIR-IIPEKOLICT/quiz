@@ -14,7 +14,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import loshica.quiz.R;
-import loshica.vendor.LOSUtils;
 
 public class NameDialog extends DialogFragment {
 
@@ -29,7 +28,7 @@ public class NameDialog extends DialogFragment {
         @SuppressLint("InflateParams") View root = inflater.inflate(R.layout.dialog_name, null);
         et = root.findViewById(R.id.name_dialog_input);
 
-        Dialog d = builder
+        return builder
             .setView(root)
             .setTitle(R.string.name_dialog_title)
             .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -38,9 +37,6 @@ public class NameDialog extends DialogFragment {
             })
             .setNegativeButton(R.string.cancel, null)
             .create();
-
-        LOSUtils.dialog(d);
-        return d;
     }
 
     @Override
@@ -51,6 +47,6 @@ public class NameDialog extends DialogFragment {
     }
 
     public interface NameDialogListener {
-        void name(String username);
+        void name(String playerName);
     }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/mainBgColor"
     tools:context=".MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -18,12 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
     </androidx.viewpager2.widget.ViewPager2>
-
-    <View
-        style="@style/ListDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/main_pager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main_tab"

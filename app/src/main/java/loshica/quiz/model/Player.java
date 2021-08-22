@@ -1,7 +1,5 @@
 package loshica.quiz.model;
 
-import androidx.annotation.NonNull;
-
 import org.bson.types.ObjectId;
 
 public class Player {
@@ -20,12 +18,5 @@ public class Player {
         this._id = _id;
         this.name = name;
         this.score = score;
-    }
-
-    // TODO: only for development
-    @NonNull
-    @Override
-    public String toString() {
-        return "[name: " + name + "; score: " + score + "]";
     }
 }
