@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name_dialog_placeholder"
-            android:textColor="?attr/mainTextColor"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 

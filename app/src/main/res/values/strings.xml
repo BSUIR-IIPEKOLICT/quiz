@@ -30,5 +30,7 @@
 
     <string name="name_dialog_title">Имя игрока</string>
     <string name="name_dialog_placeholder">Ваше имя</string>
+    <string name="ok">ок</string>
+    <string name="cancel">отмена</string>
 
 </resources>

@@ -148,7 +148,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess && v.getId() != R.id.question_help) {
+        if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess &&
+            v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
                     Coordinator.choose.put(id, i);
@@ -158,7 +159,8 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             radioOff();
             check();
             listener.next(isCorrect(right, Objects.requireNonNull(Coordinator.choose.get(id))));
-        } else if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess && v.getId() == R.id.question_help) {
+        } else if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess
+            && v.getId() == R.id.question_help) {
             Coordinator.help--;
             help();
             help.setText(MessageFormat.format(Coordinator.res().getString(R.string.question_help), Coordinator.help));
