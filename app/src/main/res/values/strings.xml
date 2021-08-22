@@ -7,7 +7,7 @@
 
     <!-- маин -->
 
-    <string name="main_text">Квиз епта</string>
+    <string name="main_text">Викторина</string>
     <string name="play_btn">Играть</string>
 
     <!-- question -->
@@ -24,7 +24,7 @@
 
     <string name="finish_label">Финалочка</string>
     <string name="finish_default_text">Вернитесь на главную старницу, чтобы начать прохождение</string>
-    <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} суток ареста.</string>
+    <string name="finish_text">Поздравляем, игрок {0}!\nВы заработали {1} очков.</string>
 
     <!-- диалоговые окна -->
 

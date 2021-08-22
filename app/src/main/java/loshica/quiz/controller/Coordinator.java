@@ -98,7 +98,7 @@ public class Coordinator extends Application {
 
     public static void resetScore() { score = 0; }
 
-    public static void calcScore(boolean isCorrect) { if (inProcess && isCorrect) score += 5; }
+    public static void calcScore(boolean isCorrect) { if (inProcess && isCorrect) score += 10; }
 
     public static void localSave() {
         SharedPreferences.Editor editor = players.edit();

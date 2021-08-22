@@ -43,6 +43,7 @@
             android:layout_marginBottom="25dp"
             android:text="@string/null_text"
             android:textSize="16sp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/question_rg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
