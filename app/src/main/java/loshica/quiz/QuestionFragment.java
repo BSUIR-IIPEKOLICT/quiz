@@ -101,7 +101,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         help.setOnClickListener(this);
 
         timerCounter = 15;
-        if (!Objects.requireNonNull(App.isChecked.get(id))) {
+        if (!Objects.requireNonNull(Coordinator.isChecked.get(id))) {
             timer = new CountDownTimer(15000, 1000) {
 
                 @SuppressLint("SetTextI18n")
@@ -110,7 +110,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 }
 
                 public void onFinish() {
-                    App.isChecked.put(id, true);
+                    Coordinator.isChecked.put(id, true);
                     listener.next(false);
                 }
             }.start();
@@ -122,11 +122,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
+        help.setText(MessageFormat.format(Coordinator.res().getString(R.string.question_help), Coordinator.help));
 
-        if (App.help == 0) helpOff();
-        if (timerCounter == 0 || Objects.requireNonNull(App.isChecked.get(id))) timerView.setText("");
-        if (Objects.requireNonNull(App.isChecked.get(id)) || !App.inProcess) {
+        if (Coordinator.help == 0) helpOff();
+        if (timerCounter == 0 || Objects.requireNonNull(Coordinator.isChecked.get(id))) timerView.setText("");
+        if (Objects.requireNonNull(Coordinator.isChecked.get(id)) || !Coordinator.inProcess) {
             radioOff();
             helpOff();
             check();
@@ -138,26 +138,26 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         super.onPause();
         timerCounter = 0;
         if (timer != null) timer.cancel();
-        App.isChecked.put(id, true);
+        Coordinator.isChecked.put(id, true);
         check();
     }
 
     @Override
     public void onClick(View v) {
-        if (!Objects.requireNonNull(App.isChecked.get(id)) && App.inProcess && v.getId() != R.id.question_help) {
+        if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess && v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
-                    App.choose.put(id, i);
-                    App.isChecked.put(id, true);
+                    Coordinator.choose.put(id, i);
+                    Coordinator.isChecked.put(id, true);
                 }
             }
             radioOff();
             check();
-            listener.next(isCorrect(right, Objects.requireNonNull(App.choose.get(id))));
-        } else if (!Objects.requireNonNull(App.isChecked.get(id)) && App.inProcess && v.getId() == R.id.question_help) {
-            App.help--;
+            listener.next(isCorrect(right, Objects.requireNonNull(Coordinator.choose.get(id))));
+        } else if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess && v.getId() == R.id.question_help) {
+            Coordinator.help--;
             help();
-            help.setText(MessageFormat.format(App.res().getString(R.string.question_help), App.help));
+            help.setText(MessageFormat.format(Coordinator.res().getString(R.string.question_help), Coordinator.help));
             helpOff();
         }
     }
@@ -189,7 +189,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.right_answer, requireActivity().getTheme()
                 ));
-            } else if (i == Objects.requireNonNull(App.choose.get(id))) {
+            } else if (i == Objects.requireNonNull(Coordinator.choose.get(id))) {
                 rb = (RadioButton) rg.getChildAt(i);
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.wrong_answer, requireActivity().getTheme()

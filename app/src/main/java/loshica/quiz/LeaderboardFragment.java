@@ -21,7 +21,7 @@ public class LeaderboardFragment extends Fragment {
 
         rv = root.findViewById(R.id.recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(requireContext()));
-        la = new LeaderboardAdapter(App.usersJava);
+        la = new LeaderboardAdapter(Coordinator.playersJava);
         rv.setAdapter(la);
 
         return root;
@@ -31,9 +31,9 @@ public class LeaderboardFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if (App.updateLeaderboard) {
+        if (Coordinator.updateLeaderboard) {
             la.notifyDataSetChanged();
-            App.updateLeaderboard = false;
+            Coordinator.finishLeaderboardUpdate();
         }
     }
 }

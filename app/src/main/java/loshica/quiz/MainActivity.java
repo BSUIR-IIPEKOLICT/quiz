@@ -83,11 +83,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void name(String username) {
-        App.name = username;
-        App.score = 0;
-        App.inProcess = true;
-        App.updateMaps();
+    public void name(String playerName) {
+        Coordinator.startGame(playerName);
+        Coordinator.updateMaps();
         startActivity(new Intent(this, QuestionActivity.class));
     }
 

@@ -37,10 +37,10 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        String generic = MessageFormat.format(App.res().getString(R.string.finish_text), App.name,
-            App.score);
-        String textDefault = App.res().getString(R.string.finish_default_text);
-        tv.setText((!App.name.equals("")) ? generic : textDefault);
+        String generic = MessageFormat.format(Coordinator.res().getString(R.string.finish_text),
+            Coordinator.name, Coordinator.score);
+        String textDefault = Coordinator.res().getString(R.string.finish_default_text);
+        tv.setText((!Coordinator.name.equals("")) ? generic : textDefault);
     }
 
     @Override
