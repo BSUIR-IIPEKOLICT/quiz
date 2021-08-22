@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import loshica.quiz.R;
 import loshica.vendor.LOSUtils;
 
 public class NameDialog extends DialogFragment {

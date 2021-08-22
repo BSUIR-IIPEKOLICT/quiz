@@ -13,6 +13,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
+import loshica.quiz.controller.Coordinator;
+import loshica.quiz.view.MainAdapter;
+import loshica.quiz.view.MyPageTransformer;
+import loshica.quiz.view.NameDialog;
 import loshica.vendor.LOSSettingsActivity;
 import loshica.vendor.LOSTheme;
 

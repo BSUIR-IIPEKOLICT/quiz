@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import loshica.quiz.R;
+import loshica.quiz.controller.Coordinator;
 
 public class LeaderboardFragment extends Fragment {
 

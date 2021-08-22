@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import android.os.Bundle;
 
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import loshica.quiz.R;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 

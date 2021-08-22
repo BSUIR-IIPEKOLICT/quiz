@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LOSTheme_BlackRed"
-        android:name=".Coordinator"
+        android:name=".controller.Coordinator"
         tools:ignore="AllowBackup">
 
         <activity android:name=".MainActivity">
@@ -26,7 +26,7 @@
             android:name=".QuestionActivity"
             android:label="@string/question_label"
             android:screenOrientation="portrait"
-            android:parentActivityName="loshica.quiz.MainActivity"
+            android:parentActivityName=".MainActivity"
             tools:ignore="LockedOrientationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,7 +35,7 @@
         <activity
             android:name="loshica.vendor.LOSSettingsActivity"
             android:label="@string/settings_label"
-            android:parentActivityName="loshica.quiz.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

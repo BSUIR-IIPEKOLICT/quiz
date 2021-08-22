@@ -1,9 +1,11 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import loshica.quiz.model.Question;
 
 public class QuestionAdapter extends FragmentStateAdapter {
 

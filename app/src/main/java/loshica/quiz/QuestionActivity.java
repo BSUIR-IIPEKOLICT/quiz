@@ -12,6 +12,11 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 import java.util.Objects;
 
+import loshica.quiz.controller.Coordinator;
+import loshica.quiz.view.FinishFragment;
+import loshica.quiz.view.MyPageTransformer;
+import loshica.quiz.view.QuestionAdapter;
+import loshica.quiz.view.QuestionFragment;
 import loshica.vendor.LOSSettingsActivity;
 import loshica.vendor.LOSTheme;
 

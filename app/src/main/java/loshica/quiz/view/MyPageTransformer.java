@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import android.view.View;
 

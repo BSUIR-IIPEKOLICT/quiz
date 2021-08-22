@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,6 +20,10 @@ import android.widget.TextView;
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.Random;
+
+import loshica.quiz.R;
+import loshica.quiz.controller.Coordinator;
+import loshica.quiz.model.Question;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
 

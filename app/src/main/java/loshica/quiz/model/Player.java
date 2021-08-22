@@ -1,4 +1,4 @@
-package loshica.quiz;
+package loshica.quiz.model;
 
 import androidx.annotation.NonNull;
 

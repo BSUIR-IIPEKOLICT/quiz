@@ -1,4 +1,7 @@
-package loshica.quiz;
+package loshica.quiz.model;
+
+import loshica.quiz.R;
+import loshica.quiz.controller.Coordinator;
 
 public class Question {
     // TODO: Questions data
