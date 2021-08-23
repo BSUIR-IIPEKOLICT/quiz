@@ -10,4 +10,5 @@
     
     <color name="right_answer">#00FF00</color>
     <color name="wrong_answer">#FF0000</color>
+    <color name="tap_bg">#44000000</color>
 </resources>

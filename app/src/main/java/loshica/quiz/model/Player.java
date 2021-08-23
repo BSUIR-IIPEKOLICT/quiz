@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 
 public class Player {
 
-    public ObjectId _id;
+    public ObjectId _id; // mongodb id key
     public String name;
     public int score;
 

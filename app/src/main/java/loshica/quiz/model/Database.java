@@ -16,11 +16,10 @@ import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class Database {
 
-    private static final String appId = "quiz-sjhgv";
+    private static final String appId = "quiz-sjhgv"; // app id from mongodb realm app
     private static final String service = "mongodb-atlas";
-    private static final String database = "Main";
-    private static final String playerCol = "Player";
-    private static final String questionCol = "Question";
+    private static final String database = "Main"; // name of database in mongodb realm app
+    private static final String playerCol = "Player"; // name of collection in database
 
     public static App app = new App(new AppConfiguration.Builder(appId).build());
     public static User user;
@@ -28,19 +27,18 @@ public class Database {
     static MongoClient client;
     static MongoDatabase data;
     static MongoCollection<Document> playersData;
-    static MongoCollection<Document> questionsData;
 
     public static void init() {
         user = app.currentUser();
         client = Objects.requireNonNull(user).getMongoClient(service);
         data = client.getDatabase(database);
         playersData = data.getCollection(playerCol);
-        questionsData = data.getCollection(questionCol);
     }
 
     public static Set<Player> getPlayers() {
         Set<Player> players = new HashSet<>();
 
+        // get players collection from main database
         playersData.find().iterator().getAsync(result -> {
             if (result.isSuccess()) {
                 MongoCursor<Document> collection = result.get();

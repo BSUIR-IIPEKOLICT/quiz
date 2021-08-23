@@ -1,4 +1,4 @@
-package loshica.quiz.controller;
+package loshica.quiz.viewModel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -16,35 +16,36 @@ import java.util.Set;
 import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import loshica.quiz.model.Player;
-import loshica.quiz.model.Question;
 import loshica.quiz.model.Database;
 
 public class Coordinator extends Application {
 
+    // TODO: Удобняшки (доступ к ресурсам/контексту в любом месте)
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
     private static Resources res;
+    //
 
-    public static final String PLAYERS = "players";
+    public static final String PLAYERS = "players"; // Название ключа в Shared Pref с игроками
 
     public static Gson json = new Gson();
     public static SharedPreferences players;
-    public static Set<String> playersJson = new HashSet<>();
-    public static Set<Player> playersJava = new HashSet<>();
+    public static Set<String> playersJson = new HashSet<>(); // Сет игроков в Json формате
+    public static Set<Player> playersJava = new HashSet<>(); // Сет игроков в Java формате
 
-    public static String name = "";
-    public static int score = 0;
-    public static int help = 3;
-    public static boolean inProcess = false;
-    public static boolean updateLeaderboard = false;
-    public static boolean online = false;
+    public static String name = ""; // player name
+    public static int score = 0; // player score
+    public static int help = 3; // help counter
+    public static boolean inProcess = false; // Флаг состояния
+    public static boolean updateLeaderboard = false; // Флаг для обновления лидербоарда
+    public static boolean online = false; // Флаг режима (онлайн/оффлайн)
 
-    public static Map<Integer, Boolean> isChecked = new HashMap<>();
-    public static Map<Integer, Integer> choose = new HashMap<>();
+    public static Map<Integer, Boolean> isChecked = new HashMap<>(); // map (номер вопроса | чекнут ли)
+    public static Map<Integer, Integer> choose = new HashMap<>(); // map (номер вопроса | какой варик выбрал игрок)
 
-    static Player newPlayer;
-    static Player existsPlayer;
-    static boolean exists;
+    static Player newPlayer; // переменная для создания нового игрока
+    static Player existsPlayer; // переменная, куда будет занесен игрок с таким же именем (если есть)
+    static boolean exists; // флаг, показывающий, был ли игрок с таким же именем
 
     @Override
     public void onCreate() {
@@ -69,12 +70,14 @@ public class Coordinator extends Application {
         });
         //
 
+        // if not connect -> read players from local shared pref
         if (!online) {
             playersJson = players.getStringSet(PLAYERS, new HashSet<>());
             for (String playerJson : playersJson) {
                 playersJava.add(json.fromJson(playerJson, Player.class));
             }
         }
+        //
 
         updateMaps();
     }
@@ -83,17 +86,18 @@ public class Coordinator extends Application {
 
     public static Resources res() { return res; }
 
-    public static void startGame(String playerName) {
-        name = playerName;
-        score = 0;
-        inProcess = true;
-    }
-
     public static void updateMaps() {
+        // обнуление мапов (очистка до сток состояния)
         for (int i = 0; i < Question.questions.length; i++) {
             isChecked.put(i, false);
             choose.put(i, -1);
         }
+    }
+
+    public static void startGame(String playerName) {
+        name = playerName;
+        score = 0;
+        inProcess = true;
     }
 
     public static void resetScore() { score = 0; }
@@ -101,6 +105,7 @@ public class Coordinator extends Application {
     public static void calcScore(boolean isCorrect) { if (inProcess && isCorrect) score += 10; }
 
     public static void localSave() {
+        // save players data to shared pref
         SharedPreferences.Editor editor = players.edit();
         editor.remove(PLAYERS);
         editor.apply();
@@ -109,6 +114,7 @@ public class Coordinator extends Application {
     }
 
     public static void check() {
+        // check state in end of game
         newPlayer = new Player(name, score);
         existsPlayer = null;
         exists = false;

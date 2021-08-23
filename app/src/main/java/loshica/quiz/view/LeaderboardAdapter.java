@@ -22,7 +22,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
     LeaderboardAdapter(Set<Player> players) {
         ArrayList<Player> list = new ArrayList<>(players);
-        Collections.sort(list, (o1, o2) -> o2.score - o1.score);
+        Collections.sort(list, (o1, o2) -> o2.score - o1.score); // сортировка по очкам по убыванию
         this.players = list;
     }
 
