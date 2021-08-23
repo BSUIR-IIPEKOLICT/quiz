@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.text.MessageFormat;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
+import loshica.quiz.viewModel.Coordinator;
 
 public class FinishFragment extends Fragment implements View.OnClickListener {
 
@@ -37,6 +37,7 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    // Событие показа фрагмента
     @Override
     public void onResume() {
         super.onResume();
@@ -45,20 +46,25 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
         String textDefault = Coordinator.res().getString(R.string.finish_default_text);
         tv.setText((!Coordinator.name.equals("")) ? generic : textDefault);
     }
+    //
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.finish_back) { listener.finish(); }
     }
 
+    // Надо для интерфейса
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try { listener = (FinishFragmentListener) context; }
         catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
+    //
 
+    // Интерфейс для передачи данных в активити
     public interface FinishFragmentListener {
         void finish();
     }
+    //
 }

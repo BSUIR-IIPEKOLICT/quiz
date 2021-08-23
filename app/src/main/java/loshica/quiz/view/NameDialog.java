@@ -32,6 +32,7 @@ public class NameDialog extends DialogFragment {
             .setView(root)
             .setTitle(R.string.name_dialog_title)
             .setPositiveButton(R.string.ok, (dialog, which) -> {
+                // обработчик нажатия на кнопку ок:
                 if (!et.getText().toString().equals("")) { listener.name(et.getText().toString()); }
                 else { dialog.cancel(); }
             })
@@ -39,14 +40,18 @@ public class NameDialog extends DialogFragment {
             .create();
     }
 
+    // Для правильной работы интерфейса
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try { listener = (NameDialogListener) context; }
         catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
+    //
 
+    // Интерфейс для передачи данных в активити
     public interface NameDialogListener {
         void name(String playerName);
     }
+    //
 }

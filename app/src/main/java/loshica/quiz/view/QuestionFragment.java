@@ -22,8 +22,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
-import loshica.quiz.model.Question;
+import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Question;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
 
@@ -104,6 +104,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         }
         help.setOnClickListener(this);
 
+        // Timer
         timerCounter = 15;
         if (!Objects.requireNonNull(Coordinator.isChecked.get(id))) {
             timer = new CountDownTimer(15000, 1000) {
@@ -119,10 +120,12 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 }
             }.start();
         }
+        //
 
         return root;
     }
 
+    // Событие показа фрагмента
     @Override
     public void onResume() {
         super.onResume();
@@ -136,7 +139,9 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
             check();
         }
     }
+    //
 
+    // Событие при уходе с фрагмента
     @Override
     public void onPause() {
         super.onPause();
@@ -145,6 +150,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         Coordinator.isChecked.put(id, true);
         check();
     }
+    //
 
     @Override
     public void onClick(View v) {
@@ -168,20 +174,25 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // для интерфейса
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try { listener = (QuestionFragmentListener) context; }
         catch (ClassCastException e) { throw new ClassCastException(context.toString() + e); }
     }
+    //
 
+    // интерфейс для отправки данных в активити
     public interface QuestionFragmentListener {
         void next(boolean isCorrect);
     }
+    //
 
     private boolean isCorrect(int right, int choose) { return right == choose; }
 
     private void radioOff() {
+        // блокировка радиокнопок
         for (int i = 0; i < rg.getChildCount(); i++) {
             rg.getChildAt(i).setClickable(false);
             rg.getChildAt(i).setAlpha(alpha);
@@ -189,6 +200,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     }
 
     private void check() {
+        // расстановка цвета кнопок (зеленый/красный)
         for (int i = 0; i < rg.getChildCount(); i++) {
             if (i == right) {
                 rb = (RadioButton) rg.getChildAt(i);
@@ -205,6 +217,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     }
 
     private void help() {
+        // подсказка (блочит все кнопки, кроме правильной и 1 рандомной)
         do { random = new Random().nextInt(rg.getChildCount()); } while (random == right);
         for (int i = 0; i < rg.getChildCount(); i++) {
             if (i != right && i != random) {
@@ -215,6 +228,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     }
 
     private void helpOff() {
+        // деактивация подсказки
         help.setClickable(false);
         help.setAlpha(alpha);
     }

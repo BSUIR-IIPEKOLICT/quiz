@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class MyPageTransformer implements ViewPager2.PageTransformer {
-
+    // Класс для анимашки пролистывания страничек ViewPager-а
     private static final float MIN_SCALE = 0.75f;
 
     public void transformPage(View view, float position) {

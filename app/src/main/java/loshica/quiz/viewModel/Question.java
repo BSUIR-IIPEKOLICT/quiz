@@ -1,9 +1,9 @@
-package loshica.quiz.model;
+package loshica.quiz.viewModel;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
 
 public class Question {
+
     // TODO: Questions data
     public static final Question[] questions = {
         new Question(R.drawable.shava, R.array.q1),
