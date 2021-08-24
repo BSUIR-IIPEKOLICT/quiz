@@ -2,4 +2,5 @@
 <resources>
     <color name="right_answer">#00FF00</color>
     <color name="wrong_answer">#FF0000</color>
+    <color name="tab_bg">#22888888</color>
 </resources>
