@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 import java.util.Objects;
 
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Quiz;
 import loshica.quiz.view.FinishFragment;
 import loshica.quiz.view.MyPageTransformer;
 import loshica.quiz.view.QuestionAdapter;
@@ -40,9 +40,9 @@ public class QuestionActivity extends AppCompatActivity implements
                 super.onPageSelected(position);
 
             // обработчик выбранной странички
-            if (Coordinator.inProcess && position == qa.getItemCount() - 1) {
+            if (Quiz.inProcess && position == qa.getItemCount() - 1) {
                 // если последняя:
-                Coordinator.check();
+                Quiz.check();
                 Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.finish_label);
             } else {
                 // необязательно, смена заголовка шапки:
@@ -61,7 +61,7 @@ public class QuestionActivity extends AppCompatActivity implements
     // обработчик для кнопки назад в finish fragment
     @Override
     public void finish() {
-        Coordinator.resetScore();
+        Quiz.resetScore();
         startActivity(new Intent(this, MainActivity.class));
     }
     //
@@ -69,7 +69,7 @@ public class QuestionActivity extends AppCompatActivity implements
     // событие при нажатии радиокнопки в question fragment
     @Override
     public void next(boolean isCorrect) {
-        Coordinator.calcScore(isCorrect);
+        Quiz.calcScore(isCorrect);
         Toast.makeText(getApplicationContext(), (isCorrect) ? R.string.question_right :
             R.string.question_wrong, Toast.LENGTH_SHORT).show();
         qp.setCurrentItem(qp.getCurrentItem() + 1, true); // программно перелистнуть на след

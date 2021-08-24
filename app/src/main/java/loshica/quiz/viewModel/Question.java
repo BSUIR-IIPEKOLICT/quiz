@@ -24,6 +24,6 @@ public class Question {
 
     public Question(int img, int strings) {
         this.img = img;
-        this.strings = Coordinator.res().getStringArray(strings);
+        this.strings = Quiz.res().getStringArray(strings);
     }
 }

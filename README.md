@@ -17,7 +17,7 @@
 ### Beginner Edition
 - Java
 - максимально упрощенная реализация
-- никаких плюшек языка
+- упрощенная логика
 - никаких сложных наворотов
 - вообще ничего лишнего
 >Ветка java-be, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java-be/)
@@ -46,3 +46,18 @@
 - Kotlin
 - тестируемые фичи и самые свежие плюшки
 >Ветка kotlin, [перейти](https://github.com/IIPEKOLICT/quiz/tree/kotlin/)
+
+# Материалы
+- [Плейлист по основам Java](https://youtube.com/playlist?list=PLIU76b8Cjem48KXIy83YIm-QM6SwvzjQd) (диктор такой себе, 
+так что рекомендуется найти что-нить в таком духе)
+- [Мой Android(Java) плейлист](https://youtube.com/playlist?list=PLqgAvARfkffXhdKxjjvIQs77IAlWQMoS1) (возможно есть 
+лишнее...)
+- [Мой Android(Kotlin) плейлист](https://youtube.com/playlist?list=PLqgAvARfkffXBfPdHvuuFjSmuLRByM6cB) (возможно есть 
+лишнее...)
+- [Плейлист, по инфе с которого я подключил MongoDB](https://youtube.com/playlist?list=PLBqHLq3IFiRLzpPgWwP-eUfazUBOOBm-F) 
+(осторожно, индус (!!!))
+- [Гайд по подключению MongoDB (мой)](MONGO.md)
+- [Расшифровка некоторых используемых мной конструкций](LISTING.md)
+- [Create swipe views with tabs using ViewPager2](https://developer.android.com/guide/navigation/navigation-swipe-view-2)
+- [Slide between fragments using ViewPager](https://developer.android.com/training/animation/screen-slide)
+- [Create dynamic lists with RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
