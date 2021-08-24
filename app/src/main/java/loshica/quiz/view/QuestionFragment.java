@@ -22,8 +22,8 @@ import java.util.Objects;
 import java.util.Random;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
-import loshica.quiz.model.Question;
+import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Question;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
 

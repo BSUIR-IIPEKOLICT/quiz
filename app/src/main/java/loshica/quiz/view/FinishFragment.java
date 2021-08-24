@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.text.MessageFormat;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
+import loshica.quiz.viewModel.Coordinator;
 
 public class FinishFragment extends Fragment implements View.OnClickListener {
 
