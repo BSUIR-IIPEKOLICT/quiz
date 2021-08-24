@@ -41,7 +41,6 @@
 - последняя стабильная версия на котлине
 >Ветка main, [перейти](https://github.com/IIPEKOLICT/quiz/tree/main/)
 
-
 ### Kotlin
 - Kotlin
 - тестируемые фичи и самые свежие плюшки
