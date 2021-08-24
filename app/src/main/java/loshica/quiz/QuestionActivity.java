@@ -5,7 +5,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 import java.util.Objects;
 
-import loshica.quiz.controller.Coordinator;
+import loshica.quiz.viewModel.Coordinator;
 import loshica.quiz.view.FinishFragment;
 import loshica.quiz.view.MyPageTransformer;
 import loshica.quiz.view.QuestionAdapter;

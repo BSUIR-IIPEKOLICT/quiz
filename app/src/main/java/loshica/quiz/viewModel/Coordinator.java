@@ -1,4 +1,4 @@
-package loshica.quiz.controller;
+package loshica.quiz.viewModel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -16,7 +16,6 @@ import java.util.Set;
 import io.realm.Realm;
 import io.realm.mongodb.Credentials;
 import loshica.quiz.model.Player;
-import loshica.quiz.model.Question;
 import loshica.quiz.model.Database;
 
 public class Coordinator extends Application {
@@ -64,7 +63,6 @@ public class Coordinator extends Application {
                 for (Player playerJava : playersJava) {
                     playersJson.add(json.toJson(playerJava, Player.class));
                 }
-                updateLeaderboard = true;
             }
         });
         //
@@ -76,6 +74,7 @@ public class Coordinator extends Application {
             }
         }
 
+        updateLeaderboard = true;
         updateMaps();
     }
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import loshica.quiz.R;
-import loshica.quiz.controller.Coordinator;
+import loshica.quiz.viewModel.Coordinator;
 
 public class LeaderboardFragment extends Fragment {
 

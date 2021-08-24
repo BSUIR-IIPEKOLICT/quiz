@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import loshica.quiz.model.Question;
+import loshica.quiz.viewModel.Question;
 
 public class QuestionAdapter extends FragmentStateAdapter {
 
