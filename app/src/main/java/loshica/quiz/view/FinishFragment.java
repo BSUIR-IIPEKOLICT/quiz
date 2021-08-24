@@ -16,7 +16,7 @@ import android.widget.TextView;
 import java.text.MessageFormat;
 
 import loshica.quiz.R;
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Quiz;
 
 public class FinishFragment extends Fragment implements View.OnClickListener {
 
@@ -41,10 +41,10 @@ public class FinishFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        String generic = MessageFormat.format(Coordinator.res().getString(R.string.finish_text),
-            Coordinator.name, Coordinator.score);
-        String textDefault = Coordinator.res().getString(R.string.finish_default_text);
-        tv.setText((!Coordinator.name.equals("")) ? generic : textDefault);
+        String generic = MessageFormat.format(Quiz.res().getString(R.string.finish_text),
+            Quiz.name, Quiz.score);
+        String textDefault = Quiz.res().getString(R.string.finish_default_text);
+        tv.setText((!Quiz.name.equals("")) ? generic : textDefault);
     }
     //
 

@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import loshica.quiz.R;
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Quiz;
 import loshica.quiz.viewModel.Question;
 
 public class QuestionFragment extends Fragment implements View.OnClickListener {
@@ -106,7 +106,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
 
         // Timer
         timerCounter = 15;
-        if (!Objects.requireNonNull(Coordinator.isChecked.get(id))) {
+        if (!Objects.requireNonNull(Quiz.isChecked.get(id))) {
             timer = new CountDownTimer(15000, 1000) {
 
                 @SuppressLint("SetTextI18n")
@@ -115,7 +115,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 }
 
                 public void onFinish() {
-                    Coordinator.isChecked.put(id, true);
+                    Quiz.isChecked.put(id, true);
                     listener.next(false);
                 }
             }.start();
@@ -129,11 +129,11 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        help.setText(MessageFormat.format(Coordinator.res().getString(R.string.question_help), Coordinator.help));
+        help.setText(MessageFormat.format(Quiz.res().getString(R.string.question_help), Quiz.help));
 
-        if (Coordinator.help == 0) helpOff();
-        if (timerCounter == 0 || Objects.requireNonNull(Coordinator.isChecked.get(id))) timerView.setText("");
-        if (Objects.requireNonNull(Coordinator.isChecked.get(id)) || !Coordinator.inProcess) {
+        if (Quiz.help == 0) helpOff();
+        if (timerCounter == 0 || Objects.requireNonNull(Quiz.isChecked.get(id))) timerView.setText("");
+        if (Objects.requireNonNull(Quiz.isChecked.get(id)) || !Quiz.inProcess) {
             radioOff();
             helpOff();
             check();
@@ -147,29 +147,29 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
         super.onPause();
         timerCounter = 0;
         if (timer != null) timer.cancel();
-        Coordinator.isChecked.put(id, true);
+        Quiz.isChecked.put(id, true);
         check();
     }
     //
 
     @Override
     public void onClick(View v) {
-        if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess &&
+        if (!Objects.requireNonNull(Quiz.isChecked.get(id)) && Quiz.inProcess &&
             v.getId() != R.id.question_help) {
             for (int i = 0; i < rg.getChildCount(); i++) {
                 if (v == rg.getChildAt(i)) {
-                    Coordinator.choose.put(id, i);
-                    Coordinator.isChecked.put(id, true);
+                    Quiz.choose.put(id, i);
+                    Quiz.isChecked.put(id, true);
                 }
             }
             radioOff();
             check();
-            listener.next(isCorrect(right, Objects.requireNonNull(Coordinator.choose.get(id))));
-        } else if (!Objects.requireNonNull(Coordinator.isChecked.get(id)) && Coordinator.inProcess
+            listener.next(isCorrect(right, Objects.requireNonNull(Quiz.choose.get(id))));
+        } else if (!Objects.requireNonNull(Quiz.isChecked.get(id)) && Quiz.inProcess
             && v.getId() == R.id.question_help) {
-            Coordinator.help--;
+            Quiz.help--;
             help();
-            help.setText(MessageFormat.format(Coordinator.res().getString(R.string.question_help), Coordinator.help));
+            help.setText(MessageFormat.format(Quiz.res().getString(R.string.question_help), Quiz.help));
             helpOff();
         }
     }
@@ -207,7 +207,7 @@ public class QuestionFragment extends Fragment implements View.OnClickListener {
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.right_answer, requireActivity().getTheme()
                 ));
-            } else if (i == Objects.requireNonNull(Coordinator.choose.get(id))) {
+            } else if (i == Objects.requireNonNull(Quiz.choose.get(id))) {
                 rb = (RadioButton) rg.getChildAt(i);
                 rb.setTextColor(requireActivity().getResources().getColor(
                     R.color.wrong_answer, requireActivity().getTheme()

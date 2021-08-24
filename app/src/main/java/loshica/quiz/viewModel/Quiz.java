@@ -18,7 +18,7 @@ import io.realm.mongodb.Credentials;
 import loshica.quiz.model.Player;
 import loshica.quiz.model.Database;
 
-public class Coordinator extends Application {
+public class Quiz extends Application {
 
     // TODO: Удобняшки (доступ к ресурсам/контексту в любом месте)
     @SuppressLint("StaticFieldLeak")
@@ -65,7 +65,6 @@ public class Coordinator extends Application {
                 for (Player playerJava : playersJava) {
                     playersJson.add(json.toJson(playerJava, Player.class));
                 }
-                updateLeaderboard = true;
             }
         });
         //
@@ -79,6 +78,7 @@ public class Coordinator extends Application {
         }
         //
 
+        updateLeaderboard = true;
         updateMaps();
     }
 

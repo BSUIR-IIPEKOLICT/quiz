@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.Quiz;
 import loshica.quiz.view.MainAdapter;
 import loshica.quiz.view.MyPageTransformer;
 import loshica.quiz.view.NameDialog;
@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements
     // Обработчик для nameDialog (сработает при нажатии на ок)
     @Override
     public void name(String playerName) {
-        Coordinator.startGame(playerName);
-        Coordinator.updateMaps();
+        Quiz.startGame(playerName);
+        Quiz.updateMaps();
         startActivity(new Intent(this, QuestionActivity.class));
     }
     //
