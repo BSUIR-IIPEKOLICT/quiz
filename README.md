@@ -60,3 +60,4 @@
 - [Create swipe views with tabs using ViewPager2](https://developer.android.com/guide/navigation/navigation-swipe-view-2)
 - [Slide between fragments using ViewPager](https://developer.android.com/training/animation/screen-slide)
 - [Create dynamic lists with RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
+- [CountDownTimer](https://developer.android.com/reference/android/os/CountDownTimer)
