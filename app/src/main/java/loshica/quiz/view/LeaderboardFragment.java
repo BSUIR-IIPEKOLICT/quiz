@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import loshica.quiz.R;
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.AppState;
 
 public class LeaderboardFragment extends Fragment {
 
@@ -24,7 +24,7 @@ public class LeaderboardFragment extends Fragment {
 
         rv = root.findViewById(R.id.recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(requireContext()));
-        la = new LeaderboardAdapter(Coordinator.playersJava);
+        la = new LeaderboardAdapter(AppState.playersJava);
         rv.setAdapter(la);
 
         return root;
@@ -33,10 +33,15 @@ public class LeaderboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        AppState.loadPlayers();
 
-        if (Coordinator.updateLeaderboard) {
+        if (la.getItemCount() != AppState.playersJava.size()) {
+            requireActivity().recreate();
+        }
+
+        if (AppState.updateLeaderboard) {
             la.notifyDataSetChanged();
-            Coordinator.finishLeaderboardUpdate();
+            AppState.finishLeaderboardUpdate();
         }
     }
 }

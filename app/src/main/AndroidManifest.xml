@@ -4,6 +4,7 @@
     package="loshica.quiz">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LOSTheme_BlackRed"
-        android:name=".viewModel.Coordinator"
+        android:name=".viewModel.AppState"
         tools:ignore="AllowBackup">
 
         <activity android:name=".MainActivity">

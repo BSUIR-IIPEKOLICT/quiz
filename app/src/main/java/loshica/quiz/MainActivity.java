@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.Objects;
 
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.AppState;
 import loshica.quiz.view.MainAdapter;
 import loshica.quiz.view.MyPageTransformer;
 import loshica.quiz.view.NameDialog;
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void name(String playerName) {
-        Coordinator.startGame(playerName);
-        Coordinator.updateMaps();
+        AppState.startGame(playerName);
+        AppState.updateMaps();
         startActivity(new Intent(this, QuestionActivity.class));
     }
 

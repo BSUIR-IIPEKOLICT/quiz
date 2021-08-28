@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 import java.util.Objects;
 
-import loshica.quiz.viewModel.Coordinator;
+import loshica.quiz.viewModel.AppState;
 import loshica.quiz.view.FinishFragment;
 import loshica.quiz.view.MyPageTransformer;
 import loshica.quiz.view.QuestionAdapter;
@@ -50,8 +50,8 @@ public class QuestionActivity extends AppCompatActivity implements
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                if (Coordinator.inProcess && position == qa.getItemCount() - 1) {
-                    Coordinator.check();
+                if (AppState.inProcess && position == qa.getItemCount() - 1) {
+                    AppState.check();
                     Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.finish_label);
                 } else {
                     Objects.requireNonNull(getSupportActionBar()).setTitle(
@@ -76,13 +76,13 @@ public class QuestionActivity extends AppCompatActivity implements
 
     @Override
     public void finish() {
-        Coordinator.resetScore();
+        AppState.resetScore();
         startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
     public void next(boolean isCorrect) {
-        Coordinator.calcScore(isCorrect);
+        AppState.calcScore(isCorrect);
         Toast.makeText(getApplicationContext(), (isCorrect) ? R.string.question_right :
             R.string.question_wrong, Toast.LENGTH_SHORT).show();
         qp.setCurrentItem(qp.getCurrentItem() + 1, true);
