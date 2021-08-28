@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 
 import com.google.gson.Gson;
 
@@ -18,7 +19,7 @@ import io.realm.mongodb.Credentials;
 import loshica.quiz.model.Player;
 import loshica.quiz.model.Database;
 
-public class Coordinator extends Application {
+public class AppState extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -57,23 +58,13 @@ public class Coordinator extends Application {
         Realm.init(this);
         Database.app.loginAsync(Credentials.anonymous(), result -> {
             if (result.isSuccess()) {
-                online = true;
                 Database.init();
                 playersJava = Database.getPlayers();
-                for (Player playerJava : playersJava) {
-                    playersJson.add(json.toJson(playerJava, Player.class));
-                }
             }
         });
         //
 
-        if (!online) {
-            playersJson = players.getStringSet(PLAYERS, new HashSet<>());
-            for (String playerJson : playersJson) {
-                playersJava.add(json.fromJson(playerJson, Player.class));
-            }
-        }
-
+        online = isOnline();
         updateLeaderboard = true;
         updateMaps();
     }
@@ -81,6 +72,28 @@ public class Coordinator extends Application {
     public static Context context() { return mContext; }
 
     public static Resources res() { return res; }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+            (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public static void loadPlayers() {
+        if (online && playersJson.size() == 0) {
+            for (Player playerJava : playersJava) {
+                playersJson.add(json.toJson(playerJava, Player.class));
+            }
+            localSave();
+        } else if (!online && playersJava.size() == 0) {
+            playersJson = players.getStringSet(PLAYERS, new HashSet<>());
+
+            for (String playerJson : playersJson) {
+                playersJava.add(json.fromJson(playerJson, Player.class));
+            }
+        }
+    }
 
     public static void startGame(String playerName) {
         name = playerName;
