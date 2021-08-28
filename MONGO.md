@@ -100,26 +100,19 @@ public class Database {
 ```java
 public class Quiz extends Application {
 
-    public static Gson json = new Gson();
-    public static Set<String> playersJson = new HashSet<>(); // Сет игроков в Json формате
-    public static Set<Player> playersJava = new HashSet<>(); // Сет игроков в Java формате
-    public static boolean online = false; // Флаг режима (онлайн/оффлайн)
+    public static Set<Player> players = new HashSet<>(); // Сет игроков
 
     public void onCreate() {
         // Connect to Mongo
         Realm.init(this);
         Database.app.loginAsync(Credentials.anonymous(), result -> {
             if (result.isSuccess()) {
-                online = true;
                 Database.init();
-                playersJava = Database.getPlayers();
-                for (Player playerJava : playersJava) {
-                    playersJson.add(json.toJson(playerJava, Player.class));
-                }
+                players = Database.getPlayers();
             }
         });
+        //
     }
-    //
 }
 ```
 

@@ -21,7 +21,6 @@ public class Quiz extends Application {
     public static int help = 3; // help counter
     public static boolean inProcess = false; // Флаг состояния
     public static boolean updateLeaderboard = false; // Флаг для обновления лидербоарда
-    public static boolean online = false; // Флаг режима (онлайн/оффлайн)
 
     public static Map<Integer, Boolean> isChecked = new HashMap<>(); // map (номер вопроса | чекнут ли)
     public static Map<Integer, Integer> choose = new HashMap<>(); // map (номер вопроса | какой варик выбрал игрок)
@@ -38,7 +37,6 @@ public class Quiz extends Application {
         Realm.init(this); // старт работы realm
         Database.app.loginAsync(Credentials.anonymous(), result -> { // попытка подключиться к бд
             if (result.isSuccess()) { // если получилось
-                online = true; // флаг онлайна -> активен
                 Database.init(); // получаем данные из бд
                 players = Database.getPlayers();
             }
@@ -87,7 +85,7 @@ public class Quiz extends Application {
             else if (exists && existsPlayer != null) {
                 // если есть с таким же именем, но меньшим количеством очков - заменяем новым
                 players.remove(existsPlayer);
-                if (online) Database.removePlayer(existsPlayer);
+                Database.removePlayer(existsPlayer);
                 save(newPlayer);
             }
         }
@@ -98,7 +96,7 @@ public class Quiz extends Application {
     private static void save(Player player) {
         // сохранение игрока в рейтинге
         players.add(player); // добавить в сет игроков
-        if (online) Database.addPlayer(player); // сохранить в бд
+        Database.addPlayer(player); // сохранить в бд
         updateLeaderboard = true; // надо обновить рейтинг
     }
 

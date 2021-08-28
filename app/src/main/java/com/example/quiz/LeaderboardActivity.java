@@ -48,6 +48,11 @@ public class LeaderboardActivity extends AppCompatActivity implements View.OnCli
     public void onResume() {
         super.onResume();
 
+        if (la.getItemCount() != Quiz.players.size()) {
+            // если число игроков в сете игроков и в таблице рейтинга не совпадает - пересоздать активити
+            recreate();
+        }
+
         if (Quiz.updateLeaderboard) {
             // если в Quiz классе активен флаг обновления лидербоарда - обновляем список игроков
             la.notifyDataSetChanged();
