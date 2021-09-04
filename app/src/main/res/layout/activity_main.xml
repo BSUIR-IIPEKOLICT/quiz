@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main_pager"
+        android:id="@+id/m_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_tab"
+        app:layout_constraintBottom_toTopOf="@+id/tab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
     </androidx.viewpager2.widget.ViewPager2>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/main_tab"
+        android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@color/tab_bg"
