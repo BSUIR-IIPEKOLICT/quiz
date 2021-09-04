@@ -16,7 +16,7 @@
         app:hintTextColor="?attr/colorAccent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_dialog_input"
+            android:id="@+id/name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name_dialog_placeholder"

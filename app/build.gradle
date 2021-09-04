@@ -14,8 +14,8 @@ android {
         applicationId "loshica.quiz"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,7 +44,7 @@ realm {
 }
 
 dependencies {
-    implementation 'com.github.iipekolict:los:1.0.1'
+    implementation 'com.github.iipekolict:los:2.1'
 
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.google.code.gson:gson:2.8.6'
