@@ -1,18 +1,18 @@
 package loshica.quiz.view
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import loshica.quiz.R
 import loshica.quiz.databinding.FragmentQuestionBinding
 import loshica.quiz.interfaces.QuestionFragmentHandler
-import loshica.quiz.viewModel.AppState
-import loshica.quiz.viewModel.Question
-import java.text.MessageFormat
+import loshica.quiz.model.Question
+import loshica.quiz.viewModel.*
 import java.util.*
 
 class QuestionFragment : Fragment(), View.OnClickListener {
@@ -20,24 +20,26 @@ class QuestionFragment : Fragment(), View.OnClickListener {
     private var _b: FragmentQuestionBinding? = null
     private val b get() = _b!!
 
+    private var stringsId: Int = 0
     private var strings: Array<String>? = null
     private var img = 0
     private var right = 0
     private var pos = 0
 
     private var rb: RadioButton? = null
-
     private val alpha = 0.3f
-    private var timerCounter = 0
-
     private var random = 0
-    private var timer: CountDownTimer? = null
-    var handler: QuestionFragmentHandler? = null
+    private var handler: QuestionFragmentHandler? = null
+
+    private val timer: TimerModel by viewModels()
+    private val help: HelpModel by activityViewModels()
+    private val game: GameModel by activityViewModels()
+    private val question: QuestionModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            strings = requireArguments().getStringArray(ARG_STRINGS)
+            stringsId = requireArguments().getInt(ARG_STRINGS_ID)
             img = requireArguments().getInt(ARG_IMG)
             pos = requireArguments().getInt(ARG_POS)
         }
@@ -47,6 +49,8 @@ class QuestionFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _b = FragmentQuestionBinding.inflate(inflater, container, false)
+
+        strings = requireActivity().resources.getStringArray(stringsId)
         right = strings!![5].toInt()
 
         b.questionIv.setImageResource(img)
@@ -61,28 +65,30 @@ class QuestionFragment : Fragment(), View.OnClickListener {
         b.questionHelp.setOnClickListener(this)
         handler = activity as? QuestionFragmentHandler
 
-        timerCounter = 15
-        timer = object : CountDownTimer(15000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                b.questionTimer.text = (timerCounter--).toString()
-            }
-
-            override fun onFinish() { handler?.next(false) }
-        }
         return b.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        timer.counter.observe(this, {
+            b.questionTimer.text = if (it >= 0) it.toString() else ""
+            if (it == -1) {
+                timer.reset()
+                timer.cancel()
+                handler?.next(false)
+            }
+        })
     }
 
     override fun onResume() {
         super.onResume()
 
-        if (AppState.questionCounter == pos && timerCounter == 15) timer!!.start()
-        else timer!!.cancel()
+        if (question.isNotLast(pos)) timer.cancel()
+        b.questionHelp.text = help.text()
 
-        b.questionHelp.text = MessageFormat.format(resources.getString(R.string.question_help), AppState.help)
-
-        if (AppState.help == 0) helpOff()
-        if (timerCounter == 0) b.questionTimer.text = ""
-        if (AppState.questionCounter > pos || !AppState.inProcess || timerCounter == 0) {
+        if (help.isZero()) helpOff()
+        if (question.isPassed(pos) || !game.inProcess() || timer.isZero()) {
             radioOff()
             helpOff()
             check()
@@ -91,34 +97,33 @@ class QuestionFragment : Fragment(), View.OnClickListener {
 
     override fun onPause() {
         super.onPause()
-        timerCounter = 0
-        timer!!.cancel()
-        AppState.setQuestion(pos + 1)
+
+        timer.reset()
+        timer.cancel()
+        question.setCounter(pos + 1)
         check()
     }
 
     override fun onClick(v: View) {
-        if (AppState.questionCounter == pos && AppState.inProcess) {
+        if (!question.isNotLast(pos) && game.inProcess()) {
             when (v) {
                 b.questionHelp -> {
-                    AppState.useHelp()
+                    help.use()
                     help()
-                    b.questionHelp.text = MessageFormat.format(resources.getString(R.string.question_help), AppState.help)
+                    b.questionHelp.text = help.text()
                     helpOff()
                 }
                 else -> {
                     for (i in 0 until b.questionRg.childCount) {
-                        if (v === b.questionRg.getChildAt(i)) Question.questions[pos].choose = i
+                        if (v === b.questionRg.getChildAt(i)) question.setChoose(pos, i)
                     }
                     radioOff()
                     check()
-                    handler?.next(isCorrect(right, Question.questions[pos].choose))
+                    handler?.next(question.isCorrect(pos))
                 }
             }
         }
     }
-
-    private fun isCorrect(right: Int, choose: Int): Boolean = right == choose
 
     private fun radioOff() {
         for (i in 0 until b.questionRg.childCount) {
@@ -134,7 +139,7 @@ class QuestionFragment : Fragment(), View.OnClickListener {
                 rb!!.setTextColor(
                     requireActivity().resources.getColor(R.color.right_answer, requireActivity().theme)
                 )
-            } else if (i == Question.questions[pos].choose) {
+            } else if (i == question.getChoose(pos)) {
                 rb = b.questionRg.getChildAt(i) as RadioButton
                 rb!!.setTextColor(
                     requireActivity().resources.getColor(R.color.wrong_answer, requireActivity().theme)
@@ -159,7 +164,7 @@ class QuestionFragment : Fragment(), View.OnClickListener {
     }
 
     companion object {
-        private const val ARG_STRINGS = "strings"
+        private const val ARG_STRINGS_ID = "stringsId"
         private const val ARG_IMG = "img"
         private const val ARG_POS = "pos"
 
@@ -175,7 +180,7 @@ class QuestionFragment : Fragment(), View.OnClickListener {
             val args = Bundle()
 
             // TODO: My question obj parser
-            args.putStringArray(ARG_STRINGS, q.strings)
+            args.putInt(ARG_STRINGS_ID, q.stringsId)
             args.putInt(ARG_IMG, q.img)
             args.putInt(ARG_POS, q.pos)
             //

@@ -9,11 +9,11 @@ import loshica.quiz.databinding.ActivityMainBinding
 import loshica.quiz.interfaces.MainFragmentHandler
 import loshica.quiz.view.MainAdapter
 import loshica.quiz.view.MyPageTransformer
-import loshica.quiz.viewModel.AppState
 import loshica.vendor.LOSActivity
 
 class MainActivity : LOSActivity(), MainFragmentHandler {
 
+    private val nameArg: String = "name"
     private lateinit var b: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +41,7 @@ class MainActivity : LOSActivity(), MainFragmentHandler {
     }
 
     override fun name(playerName: String) {
-        AppState.startGame(playerName)
-        AppState.updateMaps()
-        startActivity(Intent(this, QuestionActivity::class.java))
+        startActivity(Intent(this, QuestionActivity::class.java).putExtra(nameArg, playerName))
     }
 
     override fun onBackPressed() {
