@@ -1,6 +1,5 @@
 package loshica.quiz.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import loshica.quiz.R
 import loshica.quiz.databinding.FragmentFinishBinding
+import loshica.quiz.interfaces.FinishFragmentHandler
 import loshica.quiz.viewModel.AppState
 import java.text.MessageFormat
 
@@ -15,7 +15,6 @@ class FinishFragment : Fragment(), View.OnClickListener {
 
     private var _b: FragmentFinishBinding? = null
     private val b get() = _b!!
-    private var listener: FinishFragmentListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,17 +35,7 @@ class FinishFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v) {
-            b.finishBack -> listener!!.finish()
+            b.finishBack -> (activity as? FinishFragmentHandler)?.finish()
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = try { context as FinishFragmentListener }
-        catch (e: ClassCastException) { throw ClassCastException(context.toString() + e) }
-    }
-
-    interface FinishFragmentListener {
-        fun finish()
     }
 }

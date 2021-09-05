@@ -1,6 +1,5 @@
 package loshica.quiz.view
 
-import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -10,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import loshica.quiz.R
 import loshica.quiz.databinding.FragmentQuestionBinding
+import loshica.quiz.interfaces.QuestionFragmentHandler
 import loshica.quiz.viewModel.AppState
 import loshica.quiz.viewModel.Question
 import java.text.MessageFormat
@@ -32,7 +32,7 @@ class QuestionFragment : Fragment(), View.OnClickListener {
 
     private var random = 0
     private var timer: CountDownTimer? = null
-    var listener: QuestionFragmentListener? = null
+    var handler: QuestionFragmentHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,34 +56,33 @@ class QuestionFragment : Fragment(), View.OnClickListener {
             rb = b.questionRg.getChildAt(i) as RadioButton
             rb!!.text = strings!![i + 1]
             rb!!.setOnClickListener(this)
-            println("this: $this.toString()")
         }
 
         b.questionHelp.setOnClickListener(this)
+        handler = activity as? QuestionFragmentHandler
 
         timerCounter = 15
-        if (!AppState.isChecked[pos]!!) {
-            timer = object : CountDownTimer(15000, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    b.questionTimer.text = (timerCounter--).toString()
-                }
+        timer = object : CountDownTimer(15000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                b.questionTimer.text = (timerCounter--).toString()
+            }
 
-                override fun onFinish() {
-                    AppState.isChecked[pos] = true
-                    listener!!.next(false)
-                }
-            }.start()
+            override fun onFinish() { handler?.next(false) }
         }
         return b.root
     }
 
     override fun onResume() {
         super.onResume()
+
+        if (AppState.questionCounter == pos && timerCounter == 15) timer!!.start()
+        else timer!!.cancel()
+
         b.questionHelp.text = MessageFormat.format(resources.getString(R.string.question_help), AppState.help)
 
         if (AppState.help == 0) helpOff()
-        if (timerCounter == 0 || AppState.isChecked[pos]!!) b.questionTimer.text = ""
-        if (AppState.isChecked[pos]!! || !AppState.inProcess) {
+        if (timerCounter == 0) b.questionTimer.text = ""
+        if (AppState.questionCounter > pos || !AppState.inProcess || timerCounter == 0) {
             radioOff()
             helpOff()
             check()
@@ -93,43 +92,30 @@ class QuestionFragment : Fragment(), View.OnClickListener {
     override fun onPause() {
         super.onPause()
         timerCounter = 0
-        if (timer != null) timer!!.cancel()
-        AppState.isChecked[pos] = true
+        timer!!.cancel()
+        AppState.setQuestion(pos + 1)
         check()
     }
 
     override fun onClick(v: View) {
-        if (!AppState.isChecked[pos]!! && AppState.inProcess) {
+        if (AppState.questionCounter == pos && AppState.inProcess) {
             when (v) {
                 b.questionHelp -> {
-                    AppState.help--
+                    AppState.useHelp()
                     help()
                     b.questionHelp.text = MessageFormat.format(resources.getString(R.string.question_help), AppState.help)
                     helpOff()
                 }
                 else -> {
                     for (i in 0 until b.questionRg.childCount) {
-                        if (v === b.questionRg.getChildAt(i)) {
-                            AppState.choose[pos] = i
-                            AppState.isChecked[pos] = true
-                        }
+                        if (v === b.questionRg.getChildAt(i)) Question.questions[pos].choose = i
                     }
                     radioOff()
                     check()
-                    listener!!.next(isCorrect(right, AppState.choose[pos]!!))
+                    handler?.next(isCorrect(right, Question.questions[pos].choose))
                 }
             }
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = try { context as QuestionFragmentListener }
-        catch (e: ClassCastException) { throw ClassCastException(context.toString() + e) }
-    }
-
-    interface QuestionFragmentListener {
-        fun next(isCorrect: Boolean)
     }
 
     private fun isCorrect(right: Int, choose: Int): Boolean = right == choose
@@ -146,16 +132,12 @@ class QuestionFragment : Fragment(), View.OnClickListener {
             if (i == right) {
                 rb = b.questionRg.getChildAt(i) as RadioButton
                 rb!!.setTextColor(
-                    requireActivity().resources.getColor(
-                        R.color.right_answer, requireActivity().theme
-                    )
+                    requireActivity().resources.getColor(R.color.right_answer, requireActivity().theme)
                 )
-            } else if (i == AppState.choose[pos]!!) {
+            } else if (i == Question.questions[pos].choose) {
                 rb = b.questionRg.getChildAt(i) as RadioButton
                 rb!!.setTextColor(
-                    requireActivity().resources.getColor(
-                        R.color.wrong_answer, requireActivity().theme
-                    )
+                    requireActivity().resources.getColor(R.color.wrong_answer, requireActivity().theme)
                 )
             }
         }
@@ -186,18 +168,17 @@ class QuestionFragment : Fragment(), View.OnClickListener {
          * this fragment using the provided parameters.
          *
          * @param q Question object with params.
-         * @param id Question id.
          * @return A new instance of fragment Question.
          */
-        fun newInstance(q: Question, id: Int): QuestionFragment {
+        fun newInstance(q: Question): QuestionFragment {
             val fragment = QuestionFragment()
             val args = Bundle()
 
             // TODO: My question obj parser
             args.putStringArray(ARG_STRINGS, q.strings)
             args.putInt(ARG_IMG, q.img)
+            args.putInt(ARG_POS, q.pos)
             //
-            args.putInt(ARG_POS, id)
             fragment.arguments = args
             return fragment
         }

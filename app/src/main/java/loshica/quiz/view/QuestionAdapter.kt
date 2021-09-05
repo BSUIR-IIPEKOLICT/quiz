@@ -9,7 +9,7 @@ class QuestionAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
         return if (position < itemCount - 1)
-            QuestionFragment.newInstance(Question.questions[position], position)
+            QuestionFragment.newInstance(Question.questions[position])
         else FinishFragment()
     }
 

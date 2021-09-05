@@ -2,11 +2,15 @@ package loshica.quiz.viewModel
 
 import loshica.quiz.R
 
-class Question(var img: Int, strings: Int) {
+data class Question(var img: Int, var stringsId: Int) {
 
-    var strings: Array<String> = AppState.res()!!.getStringArray(strings)
+    var strings: Array<String> = AppState.res()!!.getStringArray(stringsId)
+    var pos: Int = counter++
+    var choose: Int = -1
 
     companion object {
+        private var counter: Int = 0
+
         // TODO: Questions data
         val questions = arrayOf(
             Question(R.drawable.shava, R.array.q1),
