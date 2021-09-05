@@ -10,7 +10,7 @@ import io.realm.mongodb.mongo.iterable.MongoCursor
 import org.bson.Document
 import java.util.*
 
-object Database {
+object Repository {
 
     private const val appId = "quiz-sjhgv"
     private const val service = "mongodb-atlas"

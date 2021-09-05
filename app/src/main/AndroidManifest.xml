@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LOSTheme_BlackRed"
-        android:name=".viewModel.AppState"
         tools:ignore="AllowBackup">
 
         <activity android:name=".MainActivity">
