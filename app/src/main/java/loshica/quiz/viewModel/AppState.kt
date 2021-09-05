@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.mongodb.App
@@ -43,7 +44,13 @@ class AppState : Application() {
     private val isOnline: Boolean
         get() {
             val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
+            val cp = cm.getNetworkCapabilities(cm.activeNetwork)
+
+            return cp != null && (
+                cp.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                cp.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                cp.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+            )
         }
 
     companion object {
@@ -61,13 +68,11 @@ class AppState : Application() {
         var name = ""
         var score = 0
         var help = 3
+        var questionCounter = 0
 
         var inProcess = false
         var updateLeaderboard = false
         var online = false
-
-        var isChecked: MutableMap<Int, Boolean> = HashMap()
-        var choose: MutableMap<Int, Int> = HashMap()
 
         private var newPlayer: Player? = null
         private var existsPlayer: Player? = null
@@ -95,18 +100,18 @@ class AppState : Application() {
             name = playerName
             score = 0
             inProcess = true
+            questionCounter = 0
         }
 
-        fun updateMaps() {
-            for (i in Question.questions.indices) {
-                isChecked[i] = false
-                choose[i] = -1
-            }
-        }
+        fun updateMaps() { for (question in Question.questions) question.choose = -1 }
 
         fun resetScore() { score = 0 }
 
         fun calcScore(isCorrect: Boolean) { if (inProcess && isCorrect) score += 10 }
+
+        fun setQuestion(pos: Int) { questionCounter = pos }
+
+        fun useHelp() { help-- }
 
         private fun localSave() {
             val editor = players!!.edit()

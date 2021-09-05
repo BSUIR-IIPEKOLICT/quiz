@@ -6,13 +6,13 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import loshica.quiz.databinding.ActivityMainBinding
+import loshica.quiz.interfaces.MainFragmentHandler
 import loshica.quiz.view.MainAdapter
 import loshica.quiz.view.MyPageTransformer
-import loshica.quiz.view.NameDialog
 import loshica.quiz.viewModel.AppState
 import loshica.vendor.LOSActivity
 
-class MainActivity : LOSActivity(), NameDialog.NameDialogListener {
+class MainActivity : LOSActivity(), MainFragmentHandler {
 
     private lateinit var b: ActivityMainBinding
 
@@ -27,9 +27,7 @@ class MainActivity : LOSActivity(), NameDialog.NameDialogListener {
         b.mPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                supportActionBar?.setTitle(
-                    resources.getStringArray(R.array.main_tabs)[position]
-                )!!
+                supportActionBar?.setTitle(resources.getStringArray(R.array.main_tabs)[position])!!
             }
         })
         b.mPager.setPageTransformer(MyPageTransformer())

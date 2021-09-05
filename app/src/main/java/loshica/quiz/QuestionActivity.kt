@@ -5,15 +5,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import loshica.quiz.databinding.ActivityQuestionBinding
-import loshica.quiz.view.FinishFragment.FinishFragmentListener
+import loshica.quiz.interfaces.FinishFragmentHandler
+import loshica.quiz.interfaces.QuestionFragmentHandler
 import loshica.quiz.view.MyPageTransformer
 import loshica.quiz.view.QuestionAdapter
-import loshica.quiz.view.QuestionFragment.QuestionFragmentListener
 import loshica.quiz.viewModel.AppState
 import loshica.vendor.LOSActivity
 import java.text.MessageFormat
 
-class QuestionActivity : LOSActivity(), QuestionFragmentListener, FinishFragmentListener {
+class QuestionActivity : LOSActivity(), QuestionFragmentHandler, FinishFragmentHandler {
 
     private lateinit var qa: QuestionAdapter
     private lateinit var b: ActivityQuestionBinding
@@ -39,6 +39,7 @@ class QuestionActivity : LOSActivity(), QuestionFragmentListener, FinishFragment
                     supportActionBar?.title = MessageFormat.format(
                         resources.getString(R.string.question_label), position + 1
                     )
+                    if (AppState.questionCounter < position) AppState.setQuestion(position)
                 }
             }
         })
@@ -53,6 +54,7 @@ class QuestionActivity : LOSActivity(), QuestionFragmentListener, FinishFragment
 
     override fun next(isCorrect: Boolean) {
         AppState.calcScore(isCorrect)
+        AppState.setQuestion(b.qPager.currentItem + 1)
         Toast.makeText(
             applicationContext,
             if (isCorrect) R.string.question_right else R.string.question_wrong,
