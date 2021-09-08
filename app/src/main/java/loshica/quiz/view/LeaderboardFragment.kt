@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import loshica.quiz.databinding.FragmentLeaderboardBinding
-import loshica.quiz.viewModel.StorageModel
+import loshica.quiz.model.Player
+import loshica.quiz.viewModel.PlayerModel
 
 class LeaderboardFragment : Fragment() {
 
@@ -16,7 +18,9 @@ class LeaderboardFragment : Fragment() {
     private val b get() = _b!!
     private lateinit var la: LeaderboardAdapter
 
-    private val storage: StorageModel by activityViewModels()
+    private lateinit var playerPlayersObserver: Observer<MutableSet<Player>>
+
+    private val player: PlayerModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -24,17 +28,25 @@ class LeaderboardFragment : Fragment() {
         _b = FragmentLeaderboardBinding.inflate(inflater, container, false)
         b.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        la = LeaderboardAdapter(storage.getPlayers())
+        la = LeaderboardAdapter(player.set.value)
         b.recyclerView.adapter = la
+        player.preload()
+
+        playerPlayersObserver = Observer {
+            la.update(it)
+        }
 
         return b.root
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
+        player.set.observe(this, playerPlayersObserver)
+    }
 
-        storage.load()
-        if (!storage.check(la.itemCount)) requireActivity().recreate()
+    override fun onStop() {
+        super.onStop()
+        player.set.removeObserver(playerPlayersObserver)
     }
 
     override fun onDestroyView() {

@@ -16,6 +16,8 @@ class FinishFragment : Fragment(), View.OnClickListener {
     private var _b: FragmentFinishBinding? = null
     private val b get() = _b!!
 
+    private lateinit var gameCounterObserver: Observer<Int>
+
     private val game: GameModel by activityViewModels()
 
     override fun onCreateView(
@@ -24,11 +26,21 @@ class FinishFragment : Fragment(), View.OnClickListener {
         _b = FragmentFinishBinding.inflate(inflater, container, false)
 
         b.finishBack.setOnClickListener(this)
-        game.counter.observe(viewLifecycleOwner, Observer {
+        gameCounterObserver = Observer {
             b.finishText.text = game.finishText()
-        })
+        }
 
         return b.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        game.counter.observe(this, gameCounterObserver)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        game.counter.removeObserver(gameCounterObserver)
     }
 
     override fun onClick(v: View) {

@@ -6,6 +6,6 @@ data class Question(var img: Int, var stringsId: Int) {
     var choose: Int = -1
 
     companion object {
-        private var counter: Int = 0
+        var counter: Int = 0
     }
 }

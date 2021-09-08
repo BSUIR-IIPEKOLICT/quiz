@@ -26,7 +26,7 @@ class Player {
         private const val SCORE = "score"
         private const val ID = "_id"
 
-        fun fromDb(document: Document): Player {
+        fun convert(document: Document): Player {
             return Player(
                 document.getString(NAME),
                 document.getInteger(SCORE),
@@ -34,7 +34,7 @@ class Player {
             )
         }
 
-        fun fromKotlin(player: Player): Document {
+        fun convert(player: Player): Document {
             return Document()
                 .append(NAME, player.name)
                 .append(SCORE, player.score)

@@ -27,18 +27,15 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v) {
             b.mainPlay -> {
-                var name: DialogNameBinding? = DialogNameBinding.inflate(layoutInflater)
+                var name: DialogNameBinding = DialogNameBinding.inflate(layoutInflater)
 
                 LOSDialogBuilder(requireContext())
                     .setTitle(R.string.name_dialog_title)
-                    .setView(name!!.root)
+                    .setView(name.root)
                     .setPositiveButton(R.string.ok) { dialog, _ ->
-                        if (!name!!.nameInput.text?.equals("")!!) {
-                            (activity as? MainFragmentHandler)?.name(name!!.nameInput.text.toString())
-                        } else {
-                            dialog.cancel()
-                            name = null
-                        }
+                        if (!name.nameInput.text?.equals("")!!) {
+                            (activity as? MainFragmentHandler)?.name(name.nameInput.text.toString())
+                        } else dialog.cancel()
                     }
                     .show()
             }
