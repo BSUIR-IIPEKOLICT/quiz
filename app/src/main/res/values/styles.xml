@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">-->
+<!--        <item name="colorPrimary">?attr/colorAccent</item>-->
+<!--    </style>-->
+
+<!--    <style name="Main" parent="LOSTheme_BlackRed">-->
+<!--        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogOverlay</item>-->
+<!--        <item name="alertDialogTheme">@style/MaterialAlertDialogOverlay</item>-->
+<!--    </style>-->
+
+<!--    <style name="MaterialAlertDialogOverlay" parent="@style/ThemeOverlay.MaterialComponents.Dialog.Alert">-->
+<!--        <item name="buttonBarPositiveButtonStyle">@style/Button</item>-->
+<!--        <item name="buttonBarButtonStyle">@style/Button</item>-->
+<!--&lt;!&ndash;        <item name="buttonBarStyle">@style/bar</item>&ndash;&gt;-->
+<!--    </style>-->
+
+<!--    <style name="Button" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">-->
+<!--        <item name="colorPrimary">?attr/colorAccent</item>-->
+<!--        <item name="backgroundTint">@color/right_answer</item>-->
+<!--        <item name="android:textColorPrimary">@color/right_answer</item>-->
+<!--        <item name="materialButtonStyle">@style/Button</item>-->
+<!--        <item name="android:colorAccent">?attr/colorAccent</item>-->
+<!--        <item name="android:textColor">?attr/colorAccent</item>-->
+<!--        <item name="android:colorPrimary">?attr/colorAccent</item>-->
+<!--        <item name="android:colorButtonNormal">?attr/colorAccent</item>-->
+<!--&lt;!&ndash;        <item name="materialThemeOverlay">@style/ButtonOverlay</item>&ndash;&gt;-->
+<!--    </style>-->
+
+<!--    <style name="a" parent="Widget.MaterialComponents.Button.TextButton.Dialog">-->
+<!--        <item name="materialThemeOverlay">@style/b</item>-->
+<!--    </style>-->
+
+<!--    <style name="b" parent="">-->
+<!--        <item name="colorPrimary">?attr/colorAccent</item>-->
+<!--        <item name="colorOnPrimary">@color/red</item>-->
+<!--    </style>-->
+
+<!--    <style name="bar">-->
+<!--        <item name="android:textColor">?attr/colorAccent</item>-->
+<!--    </style>-->
+
+    <!--    <style name="ButtonOverlay" parent="">-->
+<!--        <item name="colorPrimary">?attr/colorAccent</item>-->
+<!--    </style>-->
+</resources>

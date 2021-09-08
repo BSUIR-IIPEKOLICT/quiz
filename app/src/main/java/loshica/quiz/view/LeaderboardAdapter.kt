@@ -9,7 +9,7 @@ import loshica.quiz.model.Player
 class LeaderboardAdapter internal constructor(playersSet: Set<Player>?) :
     RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
-    private val players: MutableList<Player>
+    private var players: MutableList<Player>
     private lateinit var b: ItemPlayerBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,9 +18,10 @@ class LeaderboardAdapter internal constructor(playersSet: Set<Player>?) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val player = players[position]
-        holder.b.playerName.text = player.name
-        holder.b.playerScore.text = player.score.toString()
+        with (holder.b) {
+            playerName.text = players[position].name
+            playerScore.text = players[position].score.toString()
+        }
     }
 
     override fun getItemCount(): Int = players.size
@@ -31,9 +32,19 @@ class LeaderboardAdapter internal constructor(playersSet: Set<Player>?) :
     }
 
     init {
+        this.players = convert(playersSet)
+    }
+
+    fun convert(playersSet: Set<Player>?): MutableList<Player> {
         val list = mutableListOf<Player>()
         if (playersSet != null) list.addAll(0, playersSet)
         list.sortWith { o1: Player, o2: Player -> o2.score - o1.score }
-        this.players = list
+        return list
+    }
+
+    fun update(playersSet: Set<Player>?) {
+        this.players.clear()
+        this.players = convert(playersSet)
+        notifyDataSetChanged()
     }
 }

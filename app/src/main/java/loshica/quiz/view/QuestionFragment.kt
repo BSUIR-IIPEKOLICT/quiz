@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import loshica.quiz.R
 import loshica.quiz.databinding.FragmentQuestionBinding
 import loshica.quiz.interfaces.QuestionFragmentHandler
@@ -30,6 +31,11 @@ class QuestionFragment : Fragment(), View.OnClickListener {
     private val alpha = 0.3f
     private var random = 0
     private var handler: QuestionFragmentHandler? = null
+
+    private lateinit var timerCounterObserver: Observer<Int>
+    private lateinit var helpCounterObserver: Observer<Int>
+    private lateinit var gameInProcessObserver: Observer<Boolean>
+    private lateinit var questionCounterObserver: Observer<Int>
 
     private val timer: TimerModel by viewModels()
     private val help: HelpModel by activityViewModels()
@@ -65,33 +71,56 @@ class QuestionFragment : Fragment(), View.OnClickListener {
         b.questionHelp.setOnClickListener(this)
         handler = activity as? QuestionFragmentHandler
 
+        timerCounterObserver = Observer {
+            b.questionTimer.text = if (it >= 0) it.toString() else ""
+
+            when (it) {
+                0 -> block()
+                -1 -> {
+                    timer.reset()
+                    timer.cancel()
+                    handler?.next(false)
+                }
+            }
+        }
+
+        helpCounterObserver = Observer {
+            b.questionHelp.text = help.text()
+            if (it == 0) helpOff()
+        }
+
+        gameInProcessObserver = Observer {
+            if (!it) block()
+        }
+
+        questionCounterObserver = Observer {
+            if (it == pos && !timer.isZero()) timer.start()
+            else if (it > pos) {
+                block()
+                timer.reset()
+                timer.cancel()
+            }
+        }
+
         return b.root
     }
 
     override fun onStart() {
         super.onStart()
 
-        timer.counter.observe(this, {
-            b.questionTimer.text = if (it >= 0) it.toString() else ""
-            if (it == -1) {
-                timer.reset()
-                timer.cancel()
-                handler?.next(false)
-            }
-        })
+        if (question.isLast(pos)) timer.start()
+        timer.counter.observe(this, timerCounterObserver)
+        help.counter.observe(this, helpCounterObserver)
+        game.inProcess.observe(this, gameInProcessObserver)
+        question.counter.observe(this, questionCounterObserver)
     }
 
     override fun onResume() {
         super.onResume()
 
-        if (question.isNotLast(pos)) timer.cancel()
-        b.questionHelp.text = help.text()
-
-        if (help.isZero()) helpOff()
-        if (question.isPassed(pos) || !game.inProcess() || timer.isZero()) {
-            radioOff()
-            helpOff()
-            check()
+        if (!question.isLast(pos)) {
+            timer.reset()
+            timer.cancel()
         }
     }
 
@@ -100,17 +129,25 @@ class QuestionFragment : Fragment(), View.OnClickListener {
 
         timer.reset()
         timer.cancel()
-        question.setCounter(pos + 1)
+        if (question.isLast(pos)) question.incCounter()
         check()
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        timer.counter.removeObserver(timerCounterObserver)
+        help.counter.removeObserver(helpCounterObserver)
+        game.inProcess.removeObserver(gameInProcessObserver)
+        question.counter.removeObserver(questionCounterObserver)
+    }
+
     override fun onClick(v: View) {
-        if (!question.isNotLast(pos) && game.inProcess()) {
+        if (question.isLast(pos) && game.inProcess()) {
             when (v) {
                 b.questionHelp -> {
                     help.use()
                     help()
-                    b.questionHelp.text = help.text()
                     helpOff()
                 }
                 else -> {
@@ -161,6 +198,12 @@ class QuestionFragment : Fragment(), View.OnClickListener {
     private fun helpOff() {
         b.questionHelp.isClickable = false
         b.questionHelp.alpha = alpha
+    }
+
+    private fun block() {
+        radioOff()
+        helpOff()
+        check()
     }
 
     companion object {

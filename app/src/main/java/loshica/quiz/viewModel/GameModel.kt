@@ -7,18 +7,19 @@ import loshica.quiz.R
 import loshica.quiz.model.Player
 import java.text.MessageFormat
 
-class GameModel(playerName: String, val app: Application) : AndroidViewModel(app) {
+class GameModel(val app: Application) : AndroidViewModel(app) {
 
     private val scoreWeight = 10
-    private val inProcess = MutableLiveData<Boolean>()
+    val inProcess = MutableLiveData<Boolean>()
     private val name = MutableLiveData<String>()
     val counter = MutableLiveData<Int>()
 
     init {
         inProcess.value = true
-        name.value = playerName
         counter.value = 0
     }
+
+    fun setName(playerName: String) { name.value = playerName }
 
     fun calcScore(isCorrect: Boolean) { if (isCorrect) counter.value = counter.value?.plus(scoreWeight) }
 

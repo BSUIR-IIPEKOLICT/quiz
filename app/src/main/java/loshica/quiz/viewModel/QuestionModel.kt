@@ -9,9 +9,10 @@ import loshica.quiz.model.Question
 class QuestionModel(private val app: Application) : AndroidViewModel(app) {
 
     private val data = MutableLiveData<Array<Question>>()
-    private val counter = MutableLiveData<Int>()
+    val counter = MutableLiveData<Int>()
 
     init {
+        Question.counter = 0
         data.value = arrayOf(
             Question(R.drawable.shava, R.array.q1),
             Question(R.drawable.war_and_peace, R.array.q2),
@@ -27,26 +28,23 @@ class QuestionModel(private val app: Application) : AndroidViewModel(app) {
         counter.value = 0
     }
 
-    fun getQuestions(): Array<Question> = data.value!!
+    fun getData(): Array<Question> = data.value!!
+
+    fun incCounter() { counter.value = counter.value?.plus(1) }
+
+    fun checkCounter(pos: Int) { if (pos > counter.value!!) incCounter() }
 
     fun setChoose(pos: Int, choose: Int) { data.value?.get(pos)!!.choose = choose }
 
     fun getChoose(pos: Int): Int = data.value?.get(pos)!!.choose
 
-    fun setCounter(pos: Int) { counter.value = pos }
-
-    fun isLeftSwipe(pos: Int): Boolean = counter.value!! < pos
-
-    fun isNotLast(pos: Int): Boolean = isLeftSwipe(pos) || isPassed(pos)
-
-    fun isPassed(pos: Int): Boolean = counter.value!! > pos
+    fun isLast(pos: Int): Boolean = counter.value!! == pos
 
     fun isCorrect(pos: Int): Boolean {
         return app.resources.getStringArray(data.value?.get(pos)!!.stringsId)[5].toInt() == getChoose(pos)
     }
 
     fun toastText(pos: Int): String {
-        return if (isCorrect(pos)) app.getString(R.string.question_right)
-            else app.getString(R.string.question_wrong)
+        return if (isCorrect(pos)) app.getString(R.string.question_right) else app.getString(R.string.question_wrong)
     }
 }
