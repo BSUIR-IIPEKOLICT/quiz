@@ -56,8 +56,15 @@
 - [Плейлист, по инфе с которого я подключил MongoDB](https://youtube.com/playlist?list=PLBqHLq3IFiRLzpPgWwP-eUfazUBOOBm-F) 
 (осторожно, индус (!!!))
 - [Гайд по подключению MongoDB (мой)](https://github.com/IIPEKOLICT/quiz/tree/java-ce/MONGO.md)
+- [Примеры работы с MongoDB на kotlin](MONGO.md)
 - [Расшифровка некоторых используемых мной конструкций](https://github.com/IIPEKOLICT/quiz/tree/java-ce/LISTING.md)
 - [Create swipe views with tabs using ViewPager2](https://developer.android.com/guide/navigation/navigation-swipe-view-2)
 - [Slide between fragments using ViewPager](https://developer.android.com/training/animation/screen-slide)
 - [Create dynamic lists with RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
 - [CountDownTimer](https://developer.android.com/reference/android/os/CountDownTimer)
+
+# Super Pro Edition
+- [Как передавать данные между Activity и Fragment](https://youtu.be/qm3RxvIPfrw?list=PL_RkZ4J60MDk9XXw2kyydhaWR7iMX0SQJ)
+- [Recycler View](https://youtube.com/playlist?list=PL_RkZ4J60MDkxuLuejSXyyvugMBR_ttZY)
+- [MVVM-плейлист](https://youtube.com/playlist?list=PLY8G5DMG6TiMlF-iZmLSnrThvZQHuSpt2)
+- [MVVM на Android Developers](https://developer.android.com/topic/libraries/architecture/viewmodel)
