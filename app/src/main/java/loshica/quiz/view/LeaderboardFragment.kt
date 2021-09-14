@@ -18,7 +18,7 @@ class LeaderboardFragment : Fragment() {
     private val b get() = _b!!
     private lateinit var la: LeaderboardAdapter
 
-    private lateinit var playerPlayersObserver: Observer<MutableSet<Player>>
+    private lateinit var playerSetObserver: Observer<MutableSet<Player>>
 
     private val player: PlayerModel by activityViewModels()
 
@@ -28,11 +28,11 @@ class LeaderboardFragment : Fragment() {
         _b = FragmentLeaderboardBinding.inflate(inflater, container, false)
         b.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        la = LeaderboardAdapter(player.set.value)
+        la = LeaderboardAdapter()
         b.recyclerView.adapter = la
         player.preload()
 
-        playerPlayersObserver = Observer {
+        playerSetObserver = Observer {
             la.update(it)
         }
 
@@ -41,12 +41,12 @@ class LeaderboardFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        player.set.observe(this, playerPlayersObserver)
+        player.set.observe(this, playerSetObserver)
     }
 
     override fun onStop() {
         super.onStop()
-        player.set.removeObserver(playerPlayersObserver)
+        player.set.removeObserver(playerSetObserver)
     }
 
     override fun onDestroyView() {

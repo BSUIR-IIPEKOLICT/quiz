@@ -26,6 +26,7 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
     init {
         java = PlayerRepository.data
         isOnline = LOSApp.isOnline(app)
+        set.value = HashSet()
 
         timer = object : CountDownTimer(10000, 1000) {
             override fun onTick(v: Long) { load() }
@@ -50,7 +51,7 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
             }
         }
 
-        set.value = java!!
+        java?.let { set.value = it }
     }
 
     private fun localSave() {

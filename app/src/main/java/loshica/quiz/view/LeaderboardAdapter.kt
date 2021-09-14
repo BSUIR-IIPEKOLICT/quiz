@@ -6,10 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import loshica.quiz.databinding.ItemPlayerBinding
 import loshica.quiz.model.Player
 
-class LeaderboardAdapter internal constructor(playersSet: Set<Player>?) :
-    RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
+class LeaderboardAdapter() : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
-    private var players: MutableList<Player>
+    private var players: MutableList<Player> = mutableListOf()
     private lateinit var b: ItemPlayerBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,10 +28,6 @@ class LeaderboardAdapter internal constructor(playersSet: Set<Player>?) :
     class ViewHolder internal constructor(binding: ItemPlayerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val b = binding
-    }
-
-    init {
-        this.players = convert(playersSet)
     }
 
     fun convert(playersSet: Set<Player>?): MutableList<Player> {
