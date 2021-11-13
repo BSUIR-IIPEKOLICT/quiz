@@ -3,48 +3,21 @@
 
 **Задание по предмету РПОС в БГУИРе**
 
-Разработать под андроид квиз с поддержкой свайпов, лидербоардом, 3 плюшками 50/50 и таймером на 15 сек для каждого 
-вопроса сверху. Желательно использовать viewpager и фрагменты для отображения.
+Разработать под андроид квиз с поддержкой свайпов, лидербоардом, подсказкой 50/50 с 3 попытками и 
+таймером на 15 сек для каждого вопроса. Желательно использовать viewpager и фрагменты для отображения.
 
-# Версии проги (они же ветки)
-    Все требования задания выполнены, сверх того во всех версиях:
-    
-    1) построены на MVVM архитектуре
-    2) инфа лидербороарда хранится на MongoDB
+### Особенности данной версии:
+    1) Java
+    2) Используется моя библиотека для построения UI
+    3) MVC/MVVM архитектура
+    4) инфа лидербороарда хранится на MongoDB
     
     Android 6.0+
 
-### Beginner Edition
-- Java
-- максимально упрощенная реализация
-- упрощенная логика
-- никаких сложных наворотов
-- вообще ничего лишнего
->Ветка java-be, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java-be/)
+# Другие версии:
 
-### Community Edition
-- Java
-- используются тернарные операторы, сокращенный синтаксис
-- более продвинутая логика
->Ветка java-ce, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java-ce/)
-
-### Java Edition
-- Java
-- использует [мою библиотеку](https://github.com/IIPEKOLICT/LOS), за счет чего круче визуалочка и user experience 
-(ничто не мешает использовать эту версию, но тогда будет не лишним и разобраться хотя бы минимально в библиотеке, что 
-не очень просто...)
-- последняя версия на Java (~~наконец-то!~~)
->Ветка java, [перейти](https://github.com/IIPEKOLICT/quiz/tree/java/)
-
-### Main
-- Kotlin
-- последняя стабильная версия на котлине
->Ветка main, [перейти](https://github.com/IIPEKOLICT/quiz/tree/main/)
-
-### Kotlin
-- Kotlin
-- тестируемые фичи и самые свежие плюшки
->Ветка kotlin, [перейти](https://github.com/IIPEKOLICT/quiz/tree/kotlin/)
+- [Версия для маши](https://github.com/IIPEKOLICT/quiz/tree/masha/)
+- [Последняя стабильная версия на Kotlin](https://github.com/IIPEKOLICT/quiz/tree/main/)
 
 # Материалы
 - [Плейлист по основам Java](https://youtube.com/playlist?list=PLIU76b8Cjem48KXIy83YIm-QM6SwvzjQd) (диктор такой себе, 
@@ -55,8 +28,8 @@
 лишнее...)
 - [Плейлист, по инфе с которого я подключил MongoDB](https://youtube.com/playlist?list=PLBqHLq3IFiRLzpPgWwP-eUfazUBOOBm-F) 
 (осторожно, индус (!!!))
-- [Гайд по подключению MongoDB (мой)](https://github.com/IIPEKOLICT/quiz/tree/java-ce/MONGO.md)
-- [Расшифровка некоторых используемых мной конструкций](https://github.com/IIPEKOLICT/quiz/tree/java-ce/LISTING.md)
+- [Гайд по подключению MongoDB (мой)](MONGO.md)
+- [Расшифровка некоторых используемых мной конструкций](LISTING.md)
 - [Create swipe views with tabs using ViewPager2](https://developer.android.com/guide/navigation/navigation-swipe-view-2)
 - [Slide between fragments using ViewPager](https://developer.android.com/training/animation/screen-slide)
 - [Create dynamic lists with RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
