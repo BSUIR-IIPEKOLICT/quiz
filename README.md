@@ -8,10 +8,11 @@
 
 ### Особенности данной версии:
     1) Java
-    2) Никаких сложных наворотов
-    3) инфа лидербороарда хранится в Shared Preferences
+    2) квази-MVC архитектура
+    3) никаких сложных наворотов
+    4) инфа лидербороарда хранится в SharedPreferences
     
-    Android 6.0+
+    Android 4.1+
 
 # Материалы
 - [Плейлист по основам Java](https://youtube.com/playlist?list=PLIU76b8Cjem48KXIy83YIm-QM6SwvzjQd) (диктор такой себе, 
