@@ -31,7 +31,7 @@ public class LeaderboardActivity extends AppCompatActivity implements View.OnCli
 
         rv = findViewById(R.id.recycler_view); // найти ресуклер вью
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext())); // суем туда лм
-        la = new LeaderboardAdapter(Quiz.players); // создаем адаптер для этого списка
+        la = new LeaderboardAdapter(Quiz.playersJava); // создаем адаптер для этого списка
         rv.setAdapter(la); // устанавливаем адаптер
     }
 
@@ -48,7 +48,7 @@ public class LeaderboardActivity extends AppCompatActivity implements View.OnCli
     public void onResume() {
         super.onResume();
 
-        if (la.getItemCount() != Quiz.players.size()) {
+        if (la.getItemCount() != Quiz.playersJava.size()) {
             // если число игроков в сете игроков и в таблице рейтинга не совпадает - пересоздать активити
             recreate();
         }

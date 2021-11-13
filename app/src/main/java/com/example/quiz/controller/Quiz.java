@@ -1,20 +1,25 @@
 package com.example.quiz.controller;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import io.realm.Realm;
-import io.realm.mongodb.Credentials;
 import com.example.quiz.model.Player;
-import com.example.quiz.model.Database;
+import com.google.gson.Gson;
 
 public class Quiz extends Application {
 
-    public static Set<Player> players = new HashSet<>(); // Сет игроков в Java формате
+    private static final String PLAYERS = "players";
+
+    public static Gson gson = new Gson(); // Утилитка для работы с Json
+    public static SharedPreferences storage; // Переменная, в которую будут загружены сохраненные преференсы
+    public static Set<Player> playersJava = new HashSet<>(); // Сет игроков в Java формате
+    public static Set<String> playersJson = new HashSet<>(); // Сет игроков в Json формате
 
     public static String name = ""; // player name
     public static int score = 0; // player score
@@ -33,18 +38,19 @@ public class Quiz extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Connect to Mongo
-        Realm.init(this); // старт работы realm
-        Database.app.loginAsync(Credentials.anonymous(), result -> { // попытка подключиться к бд
-            if (result.isSuccess()) { // если получилось
-                Database.init(); // получаем данные из бд
-                players = Database.getPlayers();
-            }
-        });
-        //
-
+        storage = getSharedPreferences(PLAYERS, Context.MODE_PRIVATE); // загрузка сохраненных преференсов
+        loadPlayers();
         updateLeaderboard = true; // флаг обновления рейтинга -> true
         updateMaps(); // обнуляем мапы
+    }
+
+    public static void loadPlayers() {
+        playersJson = storage.getStringSet(PLAYERS, new HashSet<>()); // загрузка игроков в JSON формате
+
+        for (String playerJson : playersJson) { // пробегаем циклом по каждому игроку
+            playersJava.add(gson.fromJson(playerJson, Player.class));
+                // преобразуем в JAVA формат и добавляем в сет playersJava
+        }
     }
 
     public static void updateMaps() {
@@ -73,8 +79,8 @@ public class Quiz extends Application {
         existsPlayer = null;
         exists = false;
 
-        if (!players.contains(newPlayer)) { // если в сете нет точно такого же нового игрока
-            for (Player p : players) { // перебираем каждый обьект сета
+        if (!playersJava.contains(newPlayer)) { // если в сете нет точно такого же нового игрока
+            for (Player p : playersJava) { // перебираем каждый обьект сета
                 if (p.name.equals(newPlayer.name)) { // и сравниваем его имя с именем нового игрока
                     exists = true; // если совплали - устанавить exists в true
                     if (p.score < newPlayer.score) existsPlayer = p; // и если число очков уже
@@ -84,8 +90,8 @@ public class Quiz extends Application {
             if (!exists) save(newPlayer); // сохраняем нового игрока, если нет с таким же именем
             else if (exists && existsPlayer != null) {
                 // если есть с таким же именем, но меньшим количеством очков - заменяем новым
-                players.remove(existsPlayer);
-                Database.removePlayer(existsPlayer);
+                playersJava.remove(existsPlayer);
+                playersJson.remove(gson.toJson(existsPlayer, Player.class));
                 save(newPlayer);
             }
         }
@@ -95,9 +101,18 @@ public class Quiz extends Application {
 
     private static void save(Player player) {
         // сохранение игрока в рейтинге
-        players.add(player); // добавить в сет игроков
-        Database.addPlayer(player); // сохранить в бд
+        playersJava.add(player); // добавить в сет игроков
+        playersJson.add(gson.toJson(player, Player.class));
+        localSave();
         updateLeaderboard = true; // надо обновить рейтинг
+    }
+
+    private static void localSave() { // сохранение в преференсы инфы об игроках
+        SharedPreferences.Editor editor = storage.edit();
+        editor.remove(PLAYERS);
+        editor.apply();
+        editor.putStringSet(PLAYERS, playersJson);
+        editor.apply();
     }
 
     public static void finishLeaderboardUpdate() { updateLeaderboard = false; }
