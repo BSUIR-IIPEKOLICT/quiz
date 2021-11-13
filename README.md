@@ -15,7 +15,7 @@
 # Другие версии:
 
 - [Версия для маши](https://github.com/IIPEKOLICT/quiz/tree/masha/)
-- [Последняя stable](https://github.com/IIPEKOLICT/quiz/tree/main/)
+- [Последняя версия на Java](https://github.com/IIPEKOLICT/quiz/tree/java/)
 
 # Материалы
 - [Плейлист по основам Java](https://youtube.com/playlist?list=PLIU76b8Cjem48KXIy83YIm-QM6SwvzjQd) (диктор такой себе, 
