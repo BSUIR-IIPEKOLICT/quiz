@@ -13,86 +13,86 @@
     <!-- questions -->
 
     <string-array name="q1">
-        <item>В какой стране придумали шаурму?</item>
+        <item>Какое расширение у файлов с Kotlin-кодом?</item>
 
-        <item>В России</item>
-        <item>В Германии</item>
-        <item>В Лошице</item>
-        <item>В Китае</item>
-
-        <item>1</item>
-    </string-array>
-
-    <string-array name="q2">
-        <item>Кто написал книгу "Война и мир"?</item>
-
-        <item>Достоевский</item>
-        <item>Сладкий</item>
-        <item>Толстой</item>
-        <item>Горький</item>
+        <item>.js</item>
+        <item>.java</item>
+        <item>.kt</item>
+        <item>.kotlin</item>
 
         <item>2</item>
     </string-array>
 
-    <string-array name="q3">
-        <item>Что изображено на картинке?</item>
+    <string-array name="q2">
+        <item>Зачем нужна Java?</item>
 
-        <item>Цветочки</item>
-        <item>Статуя свободы</item>
-        <item>Бурдж-халифа</item>
-        <item>Эйфелева башня</item>
+        <item>Для поддержки старых проектов</item>
+        <item>Для разработки под андроид</item>
+        <item>Для написания фронтенда</item>
+        <item>Для написания новых проектов</item>
+
+        <item>0</item>
+    </string-array>
+
+    <string-array name="q3">
+        <item>Какая компания разработала TypeScript?</item>
+
+        <item>Apple</item>
+        <item>Microsoft</item>
+        <item>Oracle</item>
+        <item>Vercel</item>
+
+        <item>1</item>
+    </string-array>
+
+    <string-array name="q4">
+        <item>Какое ключевое слово используется для наследования класса в котлине?</item>
+
+        <item>extends</item>
+        <item>implements</item>
+        <item>inherit</item>
+        <item>:</item>
 
         <item>3</item>
     </string-array>
 
-    <string-array name="q4">
-        <item>Кто изображен на картинке?</item>
+    <string-array name="q5">
+        <item>Где обычно используется архитектура MVVM?</item>
 
-        <item>Киану Ривз</item>
-        <item>Сильвестр Сталлоне</item>
-        <item>Джонни Депп</item>
-        <item>Пол Маккарти</item>
+        <item>В андроид-разработке</item>
+        <item>В фулл-стек разработке</item>
+        <item>При написании Hello world приложения</item>
+        <item>При строительстве зданий</item>
 
         <item>0</item>
-    </string-array>
-
-    <string-array name="q5">
-        <item>Что на картинке?</item>
-
-        <item>Эспрессо</item>
-        <item>Нескафе растворимый</item>
-        <item>Каппучино</item>
-        <item>Фредо</item>
-
-        <item>2</item>
     </string-array>
 
     <string-array name="q6">
-        <item>Откуда родом мороженное?</item>
+        <item>Какая компания продвигает Angular?</item>
 
-        <item>Из Китая</item>
-        <item>Из Англии</item>
-        <item>Из Бразилии</item>
-        <item>Из Италии</item>
+        <item>Facebook</item>
+        <item>Google</item>
+        <item>JetBrains</item>
+        <item>Oracle</item>
 
-        <item>0</item>
+        <item>1</item>
     </string-array>
 
     <string-array name="q7">
-        <item>Что изображено на картинке?</item>
+        <item>Что такое NestJS?</item>
 
-        <item>Омлет</item>
-        <item>Борщ</item>
-        <item>Щи</item>
-        <item>Запеканка</item>
+        <item>Библиотека</item>
+        <item>Фреймворк для написания фронтенда</item>
+        <item>Платформа</item>
+        <item>Фреймворк для написания бекенда</item>
 
-        <item>1</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="q8">
         <item>Какой язык более предпочтителен для Android-разработки?</item>
 
-        <item>JavaScript</item>
+        <item>SQL</item>
         <item>Java</item>
         <item>Kotlin</item>
         <item>Assembler</item>
@@ -101,24 +101,25 @@
     </string-array>
 
     <string-array name="q9">
-        <item>Сколько будет 2 + 2?</item>
+        <item>Сколько значений могут принимать предикаты?</item>
 
-        <item>22</item>
+        <item>10</item>
+        <item>2</item>
+        <item>1</item>
         <item>3</item>
-        <item>undefined</item>
-        <item>1 + 1 + 1 + 1</item>
 
-        <item>3</item>
+        <item>1</item>
     </string-array>
 
     <string-array name="q10">
-        <item>Как называется самая высокая гора в мире?</item>
+        <item>Как расшифровывается название паттерна MVI?</item>
 
-        <item>Эверест</item>
-        <item>Эльбрус</item>
-        <item>Дзержинская</item>
-        <item>Фудзияма</item>
-        <item>0</item>
+        <item>Model-Variant-Indus</item>
+        <item>Main-Violet-If</item>
+        <item>Model-View-Interface</item>
+        <item>Mocha-Vanilla-Interface</item>
+
+        <item>2</item>
     </string-array>
 
     <!--    -->
