@@ -1,8 +1,6 @@
 package loshica.quiz.viewModel
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -13,10 +11,7 @@ import java.util.*
 
 class PlayerModel(val app: Application) : AndroidViewModel(app) {
 
-    private val storageName: String = "players"
-    private var storage: SharedPreferences = app.getSharedPreferences(storageName, Context.MODE_PRIVATE)
-    private var json: MutableSet<String>? = HashSet()
-    private var java: MutableSet<Player>? = HashSet()
+    private var players: MutableSet<Player>? = HashSet()
 
     private var isOnline: Boolean = false
     private var timer: CountDownTimer? = null
@@ -24,11 +19,11 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
     val set = MutableLiveData<MutableSet<Player>>()
 
     init {
-        java = PlayerRepository.data
+        players = PlayerRepository.data
         isOnline = LOSApp.isOnline(app)
         set.value = HashSet()
 
-        timer = object : CountDownTimer(10000, 1000) {
+        timer = object : CountDownTimer(15000, 1000) {
             override fun onTick(v: Long) { load() }
             override fun onFinish() {}
         }
@@ -36,31 +31,7 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
 
     fun preload() { timer?.start() }
 
-    fun load() {
-        if (isOnline) {
-            for (playerJava in java!!) {
-                json?.add(LOSApp.json.toJson(playerJava, Player::class.java))
-            }
-
-            json?.let { localSave() }
-        } else {
-            json = storage.getStringSet(storageName, HashSet())
-
-            for (playerJson in json!!) {
-                java?.add(LOSApp.json.fromJson(playerJson, Player::class.java))
-            }
-        }
-
-        java?.let { set.value = it }
-    }
-
-    private fun localSave() {
-        val editor = storage.edit()
-        editor.remove(storageName)
-        editor.apply()
-        editor.putStringSet(storageName, json!!)
-        editor.apply()
-    }
+    fun load() { players?.let { set.value = it } }
 
     fun check(player: Player) {
         var existsPlayer: Player? = null
@@ -75,8 +46,7 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
 
         if (!exists) save(player) else if (existsPlayer != null) {
             set.value?.remove(existsPlayer)
-            java?.remove(existsPlayer)
-            json?.remove(LOSApp.json.toJson(existsPlayer, Player::class.java))
+            players?.remove(existsPlayer)
             if (isOnline) PlayerRepository.removePlayer(existsPlayer)
             save(player)
         }
@@ -84,9 +54,7 @@ class PlayerModel(val app: Application) : AndroidViewModel(app) {
 
     private fun save(player: Player) {
         set.value?.add(player)
-        java?.add(player)
+        players?.add(player)
         if (isOnline) PlayerRepository.addPlayer(player)
-        json?.add(LOSApp.json.toJson(player, Player::class.java))
-        localSave()
     }
 }
