@@ -30,7 +30,7 @@ class LeaderboardAdapter() : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>
         val b = binding
     }
 
-    fun convert(playersSet: Set<Player>?): MutableList<Player> {
+    private fun convert(playersSet: Set<Player>?): MutableList<Player> {
         val list = mutableListOf<Player>()
         if (playersSet != null) list.addAll(0, playersSet)
         list.sortWith { o1: Player, o2: Player -> o2.score - o1.score }

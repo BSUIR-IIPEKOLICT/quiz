@@ -12,7 +12,6 @@ import loshica.quiz.view.MyPageTransformer
 import loshica.quiz.view.QuestionAdapter
 import loshica.quiz.viewModel.*
 import loshica.vendor.LOSActivity
-import java.text.MessageFormat
 
 class QuestionActivity : LOSActivity(), QuestionFragmentHandler, FinishFragmentHandler {
 
@@ -43,13 +42,14 @@ class QuestionActivity : LOSActivity(), QuestionFragmentHandler, FinishFragmentH
                 super.onPageSelected(position)
 
                 if (game.inProcess() && position == qa.itemCount - 1) {
-                    player.check(game.getPlayer())
+                    if (game.getPlayer().score >= 50) {
+                        player.check(game.getPlayer())
+                    }
+
                     game.cancel()
                     supportActionBar?.setTitle(R.string.finish_label)!!
                 } else {
-                    supportActionBar?.title = MessageFormat.format(
-                        resources.getString(R.string.question_label), position + 1
-                    )
+                    supportActionBar?.title = "Вопрос ${position + 1}"
                     question.checkCounter(position)
                 }
             }

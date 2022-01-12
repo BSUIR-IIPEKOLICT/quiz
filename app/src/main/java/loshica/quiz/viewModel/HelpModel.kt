@@ -1,12 +1,9 @@
 package loshica.quiz.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import loshica.quiz.R
-import java.text.MessageFormat
+import androidx.lifecycle.ViewModel
 
-class HelpModel(val app: Application) : AndroidViewModel(app) {
+class HelpModel : ViewModel() {
 
     val counter = MutableLiveData<Int>()
 
@@ -16,5 +13,5 @@ class HelpModel(val app: Application) : AndroidViewModel(app) {
 
     fun use() { counter.value = counter.value?.minus(1) }
 
-    fun text(): String = MessageFormat.format(app.getString(R.string.question_help), counter.value)
+    fun text(): String = "50/50 (${counter.value})"
 }
